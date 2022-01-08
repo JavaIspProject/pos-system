@@ -94,11 +94,11 @@ public class EditProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String licensePlate = request.getParameter("license_plate");
-        String parkingSpot = request.getParameter("parking_spot");
+        int price = Integer.parseInt(request.getParameter("parking_spot"));
         int carId = Integer.parseInt(request.getParameter("car_id"));
         int userId = Integer.parseInt(request.getParameter("owner_id"));
 
-        carBean.updateCar(carId, licensePlate, parkingSpot, userId);
+        carBean.updateProducs(carId, licensePlate, price, userId);
 
         response.sendRedirect(request.getContextPath() + "/Cars");
     }

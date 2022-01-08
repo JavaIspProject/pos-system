@@ -88,10 +88,10 @@ public class AddProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String licensePlate = request.getParameter("license_plate");
-        String parkingSpot = request.getParameter("parking_spot");
+        int price = Integer.parseInt(request.getParameter("parking_spot"));
         int ownerId = Integer.parseInt(request.getParameter("owner_id"));
 
-        carBean.createCar(licensePlate, parkingSpot, ownerId);
+        carBean.createProduct(licensePlate, price, ownerId);
 
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
