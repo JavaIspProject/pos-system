@@ -32,7 +32,7 @@ public class EditProduct extends HttpServlet {
     UserBean userBean;
 
     @Inject
-    ProductBean carBean;
+    ProductBean productBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,7 +76,7 @@ public class EditProduct extends HttpServlet {
         request.setAttribute("users", users);
 
         int carId = Integer.parseInt(request.getParameter("id"));
-        ProductDetails car = carBean.findById(carId);
+        ProductDetails car = productBean.findById(carId);
         request.setAttribute("car", car);
 
         request.getRequestDispatcher("/WEB-INF/pages/car/editCar.jsp").forward(request, response);
@@ -98,7 +98,7 @@ public class EditProduct extends HttpServlet {
         int carId = Integer.parseInt(request.getParameter("car_id"));
         int userId = Integer.parseInt(request.getParameter("owner_id"));
 
-        carBean.updateProducs(carId, licensePlate, price, userId);
+        productBean.updateProduct(carId, licensePlate, price, userId);
 
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
