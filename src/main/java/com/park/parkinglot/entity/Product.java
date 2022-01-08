@@ -40,7 +40,7 @@ public class Product implements Serializable {
     @JoinColumn(name = "USER_KEY")
 
     private User user;
-    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Photo photo;
 
     public String getProductName() {
