@@ -52,69 +52,69 @@ public class ProductBean {
 
         List<ProductDetails> detailsList = new ArrayList<>();
         for (Product product : products) {
-            ProductDetails carDetails = new ProductDetails(product.getId(),
+            ProductDetails productDetails = new ProductDetails(product.getId(),
                     product.getProductName(),
                     product.getPrice(),
                     product.getCategoryId());
-            detailsList.add(carDetails);
+            detailsList.add(productDetails);
         }
         return detailsList;
     }
 
     public void createProduct(String productName, Integer price, Integer userId) {
         LOG.info("createCar");
-        Product car = new Product();
-        car.setProductName(productName);
-        car.setPrice(price);
+        Product product = new Product();
+        product.setProductName(productName);
+        product.setPrice(price);
 
         User user = em.find(User.class, userId);
-        user.getCars().add(car);
-        car.setUser(user);
+        user.getCars().add(product);
+        product.setUser(user);
 
-        em.persist(car);
+        em.persist(product);
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void updateProducs(Integer carId, String licensePlate, Integer price, Integer userId) {
+    public void updateProducs(Integer productId, String licensePlate, Integer price, Integer userId) {
         LOG.info("updateProducts");
-        Product car = em.find(Product.class, carId);
-        car.setProductName(licensePlate);
-        car.setPrice(price);
+        Product product = em.find(Product.class, productId);
+        product.setProductName(licensePlate);
+        product.setPrice(price);
 
-        User oldUser = car.getUser();
-        oldUser.getCars().remove(car);
+        //User oldUser = product.getUser();
+        //oldUser.getCars().remove(product);
 
-        User user = em.find(User.class, userId);
-        user.getCars().add(car);
-        car.setUser(user);
+        //User user = em.find(User.class, userId);
+        //user.getCars().add(product);
+        //product.setUser(user);
     }
 
     public void deleteProductsByIds(Collection<Integer> ids) {
-        LOG.info("deleteCarsByIds");
+        LOG.info("deleteProductsByIds");
         for (Integer id : ids) {
-            Product car = em.find(Product.class, id);
-            em.remove(car);
+            Product product = em.find(Product.class, id);
+            em.remove(product);
         }
     }
 
-    public void addPhotoToProduct(Integer carId, String filename, String fileType, byte[] fileContent) {
+    public void addPhotoToProduct(Integer productId, String filename, String fileType, byte[] fileContent) {
         LOG.info("addPhotoToProduct");
         Photo photo = new Photo();
         photo.setFilename(filename);
         photo.setFileType(fileType);
         photo.setFileContent(fileContent);
 
-        Product car = em.find(Product.class, carId);
-        car.setPhoto(photo);
+        Product product = em.find(Product.class, productId);
+        product.setPhoto(photo);
 
-        photo.setCar(car);
+        photo.setProduct(product);
         em.persist(photo);
     }
 
-    public PhotoDetails findPhotoByCarId(Integer carId) {
+    public PhotoDetails findPhotoByCarId(Integer productId) {
         TypedQuery<Photo> typedQuery = em.createQuery("SELECT p FROM Photo p where p.product.id = :id", Photo.class).
-                setParameter("id", carId);
+                setParameter("id", productId);
         List<Photo> photos = typedQuery.getResultList();
         if (photos.isEmpty()) {
             return null;

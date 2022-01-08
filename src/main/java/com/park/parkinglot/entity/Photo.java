@@ -30,7 +30,7 @@ public class Photo implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "CAR_KEY")
-    private Product car;
+    private Product product;
 
     public Integer getId() {
         return id;
@@ -64,12 +64,12 @@ public class Photo implements Serializable {
         this.fileContent = fileContent;
     }
 
-    public Product getCar() {
-        return car;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setCar(Product car) {
-        this.car = car;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
