@@ -4,8 +4,8 @@
  */
 package com.park.parkinglot.servlet.car;
 
-import com.park.parkinglot.common.CarDetails;
-import com.park.parkinglot.ejb.CarBean;
+import com.park.parkinglot.common.ProductDetails;
+import com.park.parkinglot.ejb.ProductBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -35,7 +35,7 @@ public class AddPhoto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Inject
-    CarBean carBean;
+    ProductBean carBean;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,7 +67,7 @@ public class AddPhoto extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer carId = Integer.parseInt(request.getParameter("id"));
-        CarDetails car = carBean.findById(carId);
+        ProductDetails car = carBean.findById(carId);
         request.setAttribute("car", car);
         
         request.getRequestDispatcher("/WEB-INF/pages/car/addPhoto.jsp").forward(request, response);

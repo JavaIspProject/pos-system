@@ -4,9 +4,9 @@
  */
 package com.park.parkinglot.ejb;
 
-import com.park.parkinglot.common.CarDetails;
+import com.park.parkinglot.common.ProductDetails;
 import com.park.parkinglot.common.PhotoDetails;
-import com.park.parkinglot.entity.Car;
+import com.park.parkinglot.entity.Product;
 import com.park.parkinglot.entity.Photo;
 import com.park.parkinglot.entity.User;
 import java.util.ArrayList;
@@ -25,34 +25,34 @@ import javax.persistence.TypedQuery;
  * @author Teo
  */
 @Stateless
-public class CarBean {
+public class ProductBean {
 
-    private static final Logger LOG = Logger.getLogger(CarBean.class.getName());
+    private static final Logger LOG = Logger.getLogger(ProductBean.class.getName());
 
     @PersistenceContext
     private EntityManager em;
 
-    public List<CarDetails> getAllCars() {
+    public List<ProductDetails> getAllCars() {
         LOG.info("getAllCars");
         try {
-            Query query = em.createQuery("SELECT c FROM Car c");
-            List<Car> cars = (List<Car>) query.getResultList();
+            Query query = em.createQuery("SELECT c FROM Product c");
+            List<Product> cars = (List<Product>) query.getResultList();
             return copyCarsToDetails(cars);
         } catch (Exception ex) {
             throw new EJBException(ex);
         }
     }
 
-    public CarDetails findById(Integer carId) {
-        Car car = em.find(Car.class, carId);
-        return new CarDetails(car.getId(), car.getLicensePlate(), car.getParkingSpot(), car.getUser().getUsername());
+    public ProductDetails findById(Integer carId) {
+        Product car = em.find(Product.class, carId);
+        return new ProductDetails(car.getId(), car.getLicensePlate(), car.getParkingSpot(), car.getUser().getUsername());
     }
 
-    private List<CarDetails> copyCarsToDetails(List<Car> cars) {
+    private List<ProductDetails> copyCarsToDetails(List<Product> cars) {
 
-        List<CarDetails> detailsList = new ArrayList<>();
-        for (Car car : cars) {
-            CarDetails carDetails = new CarDetails(car.getId(),
+        List<ProductDetails> detailsList = new ArrayList<>();
+        for (Product car : cars) {
+            ProductDetails carDetails = new ProductDetails(car.getId(),
                     car.getLicensePlate(),
                     car.getParkingSpot(),
                     car.getUser().getUsername());
@@ -63,7 +63,7 @@ public class CarBean {
 
     public void createCar(String licensePlate, String parkingSpot, Integer userId) {
         LOG.info("createCar");
-        Car car = new Car();
+        Product car = new Product();
         car.setLicensePlate(licensePlate);
         car.setParkingSpot(parkingSpot);
 
@@ -78,7 +78,7 @@ public class CarBean {
 
     public void updateCar(Integer carId, String licensePlate, String parkingSpot, Integer userId) {
         LOG.info("updateCar");
-        Car car = em.find(Car.class, carId);
+        Product car = em.find(Product.class, carId);
         car.setLicensePlate(licensePlate);
         car.setParkingSpot(parkingSpot);
 
@@ -93,7 +93,7 @@ public class CarBean {
     public void deleteCarsByIds(Collection<Integer> ids) {
         LOG.info("deleteCarsByIds");
         for (Integer id : ids) {
-            Car car = em.find(Car.class, id);
+            Product car = em.find(Product.class, id);
             em.remove(car);
         }
     }
@@ -105,7 +105,7 @@ public class CarBean {
         photo.setFileType(fileType);
         photo.setFileContent(fileContent);
 
-        Car car = em.find(Car.class, carId);
+        Product car = em.find(Product.class, carId);
         car.setPhoto(photo);
 
         photo.setCar(car);
@@ -113,7 +113,7 @@ public class CarBean {
     }
 
     public PhotoDetails findPhotoByCarId(Integer carId) {
-        TypedQuery<Photo> typedQuery = em.createQuery("SELECT p FROM Photo p where p.car.id = :id", Photo.class).
+        TypedQuery<Photo> typedQuery = em.createQuery("SELECT p FROM Photo p where p.product.id = :id", Photo.class).
                 setParameter("id", carId);
         List<Photo> photos = typedQuery.getResultList();
         if (photos.isEmpty()) {

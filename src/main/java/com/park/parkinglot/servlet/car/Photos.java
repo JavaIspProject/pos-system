@@ -5,7 +5,7 @@
 package com.park.parkinglot.servlet.car;
 
 import com.park.parkinglot.common.PhotoDetails;
-import com.park.parkinglot.ejb.CarBean;
+import com.park.parkinglot.ejb.ProductBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -58,7 +58,7 @@ public class Photos extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Inject
-    CarBean carBean;
+    ProductBean carBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -35,7 +35,7 @@ public class User implements Serializable {
     private String position;
     @JsonbTransient
     @OneToMany(mappedBy = "user")
-    private Collection<Car> cars;
+    private Collection<Product> cars;
 
     public String getUsername() {
         return username;
@@ -70,11 +70,11 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Car> getCars() {
+    public Collection<Product> getCars() {
         return cars;
     }
 
-    public void setCars(Collection<Car> cars) {
+    public void setCars(Collection<Product> cars) {
         this.cars = cars;
     }
 
