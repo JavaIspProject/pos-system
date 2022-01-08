@@ -21,7 +21,7 @@ import javax.persistence.Table;
  * @author Teo
  */
 @Entity
-@Table(name = "CARS")
+@Table(name = "PRODUCTS")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,9 +37,9 @@ public class Product implements Serializable {
     private Integer categoryId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_KEY")
+    //@JoinColumn(name = "USER_KEY")
 
-    private User user;
+    //private User user;
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Photo photo;
 
@@ -59,13 +59,13 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Photo getPhoto() {
         return photo;
@@ -113,7 +113,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "com.park.parkinglot.entity.Car[ id=" + id + " ]";
+        return "com.park.parkinglot.entity.Product[ id=" + id + " ]";
     }
 
 }

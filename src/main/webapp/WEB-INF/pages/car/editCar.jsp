@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <input type="hidden" name="car_id" value="${car.id}" />
-            <button type="submit" class="btn btn-primary " required>Save</button>
+            <button type="submit" class="btn btn-primary " >Save</button>
         </div>
     </form>
 </t:pageTemplate>

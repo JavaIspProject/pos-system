@@ -12,28 +12,28 @@
     <form method="POST" action="${pageContext.request.contextPath}/Cars">
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCar" role="button">Add Car</a> 
         <button class="btn btn-danger" type="submit">Delete Cars</button>
-        <c:forEach var="car" items="${cars}" varStatus="status">
+        <c:forEach var="car" items="${products}" varStatus="status">
             <div class="row mb-1">
                 <div class="col-md">
-                    <input type="checkbox" name="car_ids" value="${car.id}"/>
+                    <input type="checkbox" name="car_ids" value="${product.id}"/>
                 </div>
                 <div class="col-md-2">
-                    ${car.licensePlate}
+                    ${car.productName}
                 </div>
                 <div class="col-md-2">
-                    ${car.parkingSpot}
+                    ${car.price}
                 </div>
-                <div class="col-md-2">
-                    ${car.username}
-                </div>
+<!--                <div class="col-md-2">
+                   ${car.username}
+                </div>-->
                 <div class="col-md-1">
-                    <img src="${pageContext.request.contextPath}/Cars/Photos?id=${car.id}" width="48" />
+                    <img src="${pageContext.request.contextPath}/Cars/Photos?id=${product.id}" width="48" />
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/AddPhoto?id=${car.id}" role="button">Add Photo</a>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/AddPhoto?id=${product.id}" role="button">Add Photo</a>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/EditCar?id=${car.id}" role="button">Edit Car</a>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/EditCar?id=${product.id}" role="button">Edit Product</a>
                 </div>
             </div>    
         </c:forEach>

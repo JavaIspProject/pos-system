@@ -34,8 +34,8 @@ public class User implements Serializable {
     private String password;
     private String position;
     @JsonbTransient
-    @OneToMany(mappedBy = "user")
-    private Collection<Product> cars;
+    //@OneToMany(mappedBy = "user")
+   // private Collection<Product> cars;
 
     public String getUsername() {
         return username;
@@ -69,14 +69,14 @@ public class User implements Serializable {
         this.position = position;
     }
 
-    @XmlTransient
-    public Collection<Product> getCars() {
-        return cars;
-    }
-
-    public void setCars(Collection<Product> cars) {
-        this.cars = cars;
-    }
+//    @XmlTransient
+//    public Collection<Product> getCars() {
+//        return cars;
+//    }
+//
+//    public void setCars(Collection<Product> cars) {
+//        this.cars = cars;
+//    }
 
     public Integer getId() {
         return id;

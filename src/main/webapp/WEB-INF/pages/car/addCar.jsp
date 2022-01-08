@@ -1,5 +1,5 @@
 <%-- 
-    Document   : addCar
+    Document   : addProduct
     Created on : Nov 17, 2021, 11:25:02 AM
     Author     : Teo
 --%>
@@ -7,16 +7,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:pageTemplate pageTitle="Add Car">
-    <h1>Add Car</h1>
+<t:pageTemplate pageTitle="Add Product">
+    <h1>Add Product</h1>
     <form class="needs-validation" noValidate method="POST" action="${pageContext.request.contextPath}/AddCar">
         <div class="form-group">
-            <label for="inputLicensePlate">License Plate</label>
-            <input type="text" class="form-control" id="license_plate" aria-describedby="licensePlateHelp" placeholder="License Plate" name="license_plate" value="" required>
+            <label for="inputLicensePlate">Product Name</label>
+            <input type="text" class="form-control" id="license_plate" aria-describedby="productNameHelp" placeholder="License Plate" name="license_plate" value="" required>
         </div>
         <div class="form-group">
-            <label for="inputParkingSpot">Parking Spot</label>
-            <input type="text" class="form-control" id="parking_spot" aria-describedby="parkingSpotHelp" placeholder="Parking Spot" name="parking_spot" value="" required>
+            <label for="inputParkingSpot">Price</label>
+            <input type="number" class="form-control" id="parking_spot" aria-describedby="priceHelp" placeholder="Price" name="parking_spot" value="" required>
         </div>
         <div class="form-group">
             <div class="col-md-6 mb-3">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary " required>Save</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>
     <script>
