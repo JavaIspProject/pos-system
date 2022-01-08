@@ -61,15 +61,16 @@ public class ProductBean {
         return detailsList;
     }
 
-    public void createProduct(String productName, Integer price, Integer userId) {
-        LOG.info("createCar");
+    public void createProduct(String productName, Integer price, Integer categoryId) {
+        LOG.info("createProduct");
         Product product = new Product();
         product.setProductName(productName);
         product.setPrice(price);
+        product.setCategoryId(categoryId);
 
-        User user = em.find(User.class, userId);
-        user.getCars().add(product);
-        product.setUser(user);
+        //User user = em.find(User.class, userId);
+        //user.getProducts().add(product);
+        //product.setUser(user);
 
         em.persist(product);
     }
@@ -79,14 +80,15 @@ public class ProductBean {
     public void updateProduct(Integer productId, String licensePlate, Integer price, Integer userId) {
         LOG.info("updateProducts");
         Product product = em.find(Product.class, productId);
-        product.setProductName(licensePlate);
+        product.setProductName(productName);
         product.setPrice(price);
+        product.setCategoryId(categoryId);
 
         //User oldUser = product.getUser();
-        //oldUser.getCars().remove(product);
+        //oldUser.getProducts().remove(product);
 
         //User user = em.find(User.class, userId);
-        //user.getCars().add(product);
+        //user.getProducts().add(product);
         //product.setUser(user);
     }
 
@@ -112,7 +114,7 @@ public class ProductBean {
         em.persist(photo);
     }
 
-    public PhotoDetails findPhotoByCarId(Integer productId) {
+    public PhotoDetails findPhotoByProductId(Integer productId) {
         TypedQuery<Photo> typedQuery = em.createQuery("SELECT p FROM Photo p where p.product.id = :id", Photo.class).
                 setParameter("id", productId);
         List<Photo> photos = typedQuery.getResultList();
