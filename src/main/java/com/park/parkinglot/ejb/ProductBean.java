@@ -77,7 +77,7 @@ public class ProductBean {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void updateProduct(Integer productId, String licensePlate, Integer price, Integer userId) {
+    public void updateProduct(Integer productId, String productName, Integer price, Integer categoryId) {
         LOG.info("updateProducts");
         Product product = em.find(Product.class, productId);
         product.setProductName(productName);

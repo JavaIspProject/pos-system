@@ -64,7 +64,7 @@ public class Photos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer carId = Integer.parseInt(request.getParameter("id"));
-        PhotoDetails photo = carBean.findPhotoByCarId(carId);
+        PhotoDetails photo = carBean.findPhotoByProductId(carId);
         if (photo != null) {
             response.setContentType(photo.getFileType());
             response.setContentLength(photo.getFileContent().length);
