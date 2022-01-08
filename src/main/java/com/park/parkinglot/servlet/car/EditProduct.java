@@ -98,7 +98,7 @@ public class EditProduct extends HttpServlet {
         int carId = Integer.parseInt(request.getParameter("car_id"));
         int userId = Integer.parseInt(request.getParameter("owner_id"));
 
-        productBean.updateProducts(carId, licensePlate, price, userId);
+        productBean.updateProduct(carId, licensePlate, price, userId);
 
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
