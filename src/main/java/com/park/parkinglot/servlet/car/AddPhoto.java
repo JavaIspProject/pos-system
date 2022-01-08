@@ -94,7 +94,7 @@ public class AddPhoto extends HttpServlet {
         byte[] fileContent = new byte[(int) fileSize];
         filePart.getInputStream().read(fileContent);
         
-        carBean.addPhotoToCar(carId, fileName, fileType, fileContent);
+        carBean.addPhotoToProduct(carId, fileName, fileType, fileContent);
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
 

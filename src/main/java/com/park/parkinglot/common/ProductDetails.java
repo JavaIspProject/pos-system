@@ -12,33 +12,33 @@ public class ProductDetails implements java.io.Serializable {
 
     private Integer id;
 
-    private String licensePlate;
+    private String productName;
 
-    private String parkingSpot;
+    private Integer price;
 
-    private String username;
+    private Integer categoryId;
 
-    public ProductDetails(Integer id, String licensePlate, String parkingSpot, String username) {
+    public ProductDetails(Integer id, String productName, Integer price, Integer categoryId) {
         this.id = id;
-        this.licensePlate = licensePlate;
-        this.parkingSpot = parkingSpot;
-        this.username = username;
+        this.productName = productName;
+        this.price = price;
+        this.categoryId = categoryId;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getLicensePlate() {
-        return licensePlate;
+    public String getProductName() {
+        return productName;
     }
 
-    public String getParkingSpot() {
-        return parkingSpot;
+    public Integer getPrice() {
+        return price;
     }
-
-    public String getUsername() {
-        return username;
+    
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
 }

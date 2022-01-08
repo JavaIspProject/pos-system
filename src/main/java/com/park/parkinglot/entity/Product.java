@@ -30,8 +30,11 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String licensePlate;
-    private String parkingSpot;
+    private String productName;
+    
+    private Integer price;
+    
+    private Integer categoryId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_KEY")
@@ -40,20 +43,20 @@ public class Product implements Serializable {
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Photo photo;
 
-    public String getLicensePlate() {
-        return licensePlate;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getParkingSpot() {
-        return parkingSpot;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setParkingSpot(String parkingSpot) {
-        this.parkingSpot = parkingSpot;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public User getUser() {
@@ -78,6 +81,14 @@ public class Product implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+        public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override

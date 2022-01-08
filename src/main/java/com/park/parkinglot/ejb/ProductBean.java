@@ -32,40 +32,40 @@ public class ProductBean {
     @PersistenceContext
     private EntityManager em;
 
-    public List<ProductDetails> getAllCars() {
-        LOG.info("getAllCars");
+    public List<ProductDetails> getAllProducts() {
+        LOG.info("getAllProducts");
         try {
-            Query query = em.createQuery("SELECT c FROM Product c");
-            List<Product> cars = (List<Product>) query.getResultList();
-            return copyCarsToDetails(cars);
+            Query query = em.createQuery("SELECT p FROM Product p");
+            List<Product> products = (List<Product>) query.getResultList();
+            return copyProductsToDetails(products);
         } catch (Exception ex) {
             throw new EJBException(ex);
         }
     }
 
-    public ProductDetails findById(Integer carId) {
-        Product car = em.find(Product.class, carId);
-        return new ProductDetails(car.getId(), car.getLicensePlate(), car.getParkingSpot(), car.getUser().getUsername());
+    public ProductDetails findById(Integer productId) {
+        Product product = em.find(Product.class, productId);
+        return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryId());
     }
 
-    private List<ProductDetails> copyCarsToDetails(List<Product> cars) {
+    private List<ProductDetails> copyProductsToDetails(List<Product> products) {
 
         List<ProductDetails> detailsList = new ArrayList<>();
-        for (Product car : cars) {
-            ProductDetails carDetails = new ProductDetails(car.getId(),
-                    car.getLicensePlate(),
-                    car.getParkingSpot(),
-                    car.getUser().getUsername());
+        for (Product product : products) {
+            ProductDetails carDetails = new ProductDetails(product.getId(),
+                    product.getProductName(),
+                    product.getPrice(),
+                    product.getCategoryId());
             detailsList.add(carDetails);
         }
         return detailsList;
     }
 
-    public void createCar(String licensePlate, String parkingSpot, Integer userId) {
+    public void createProduct(String productName, Integer price, Integer userId) {
         LOG.info("createCar");
         Product car = new Product();
-        car.setLicensePlate(licensePlate);
-        car.setParkingSpot(parkingSpot);
+        car.setProductName(productName);
+        car.setPrice(price);
 
         User user = em.find(User.class, userId);
         user.getCars().add(car);
@@ -76,11 +76,11 @@ public class ProductBean {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void updateCar(Integer carId, String licensePlate, String parkingSpot, Integer userId) {
-        LOG.info("updateCar");
+    public void updateProducs(Integer carId, String licensePlate, Integer price, Integer userId) {
+        LOG.info("updateProducts");
         Product car = em.find(Product.class, carId);
-        car.setLicensePlate(licensePlate);
-        car.setParkingSpot(parkingSpot);
+        car.setProductName(licensePlate);
+        car.setPrice(price);
 
         User oldUser = car.getUser();
         oldUser.getCars().remove(car);
@@ -90,7 +90,7 @@ public class ProductBean {
         car.setUser(user);
     }
 
-    public void deleteCarsByIds(Collection<Integer> ids) {
+    public void deleteProductsByIds(Collection<Integer> ids) {
         LOG.info("deleteCarsByIds");
         for (Integer id : ids) {
             Product car = em.find(Product.class, id);
@@ -98,8 +98,8 @@ public class ProductBean {
         }
     }
 
-    public void addPhotoToCar(Integer carId, String filename, String fileType, byte[] fileContent) {
-        LOG.info("addPhotoToCar");
+    public void addPhotoToProduct(Integer carId, String filename, String fileType, byte[] fileContent) {
+        LOG.info("addPhotoToProduct");
         Photo photo = new Photo();
         photo.setFilename(filename);
         photo.setFileType(fileType);

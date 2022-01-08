@@ -78,7 +78,7 @@ public class Products extends HttpServlet {
         request.setAttribute("activePage", "Cars");
         request.setAttribute("numberOfFreeParkingSpots", 10);
 
-        List<ProductDetails> cars = carBean.getAllCars();
+        List<ProductDetails> cars = carBean.getAllProducts();
         request.setAttribute("cars", cars);
 
         request.getRequestDispatcher("/WEB-INF/pages/car/cars.jsp").forward(request, response);
@@ -101,7 +101,7 @@ public class Products extends HttpServlet {
             for (String carIdAsString : carIdsAsString) {
                 carIds.add(Integer.parseInt(carIdAsString));
             }
-            carBean.deleteCarsByIds(carIds);
+            carBean.deleteProductsByIds(carIds);
         }
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
