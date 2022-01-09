@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Products extends HttpServlet {
 
     @Inject
-    private ProductBean carBean;
+    private ProductBean productBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,10 +76,9 @@ public class Products extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "Cars");
-        request.setAttribute("numberOfFreeParkingSpots", 10);
 
-        List<ProductDetails> cars = carBean.getAllProducts();
-        request.setAttribute("cars", cars);
+        List<ProductDetails> products = productBean.getAllProducts();
+        request.setAttribute("products", products);
 
         request.getRequestDispatcher("/WEB-INF/pages/car/cars.jsp").forward(request, response);
     }
@@ -95,13 +94,13 @@ public class Products extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] carIdsAsString = request.getParameterValues("car_ids");
+        String[] carIdsAsString = request.getParameterValues("product_ids");
         if (carIdsAsString != null) {
             List<Integer> carIds = new ArrayList<>();
             for (String carIdAsString : carIdsAsString) {
                 carIds.add(Integer.parseInt(carIdAsString));
             }
-            carBean.deleteProductsByIds(carIds);
+            productBean.deleteProductsByIds(carIds);
         }
         response.sendRedirect(request.getContextPath() + "/Cars");
     }

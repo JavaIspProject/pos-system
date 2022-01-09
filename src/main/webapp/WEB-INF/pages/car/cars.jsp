@@ -10,21 +10,21 @@
 <t:pageTemplate pageTitle="Products">
     <h1>Products</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Cars">
-        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCar" role="button">Add Car</a> 
-        <button class="btn btn-danger" type="submit">Delete Cars</button>
+        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCar" role="button">Add Product</a> 
+        <button class="btn btn-danger" type="submit">Delete Products</button>
         <c:forEach var="product" items="${products}" varStatus="status">
             <div class="row mb-1">
                 <div class="col-md">
-                    <input type="checkbox" name="car_ids" value="${product.id}"/>
+                    <input type="checkbox" name="product_ids" value="${product.id}"/>
                 </div>
                 <div class="col-md-2">
                     ${product.productName}
                 </div>
                 <div class="col-md-2">
-                    ${product.price}
+                    price: ${product.price} USD
                 </div>
 <!--                <div class="col-md-2">
-                   ${product.username}
+                   dollarsign{product.username}
                 </div>-->
                 <div class="col-md-1">
                     <img src="${pageContext.request.contextPath}/Cars/Photos?id=${product.id}" width="48" />
@@ -38,5 +38,4 @@
             </div>    
         </c:forEach>
     </form>
-    <h5>Free parking spots: ${numberOfFreeParkingSpots}</h5>
 </t:pageTemplate>

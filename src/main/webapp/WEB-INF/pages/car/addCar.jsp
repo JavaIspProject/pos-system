@@ -12,11 +12,11 @@
     <form class="needs-validation" noValidate method="POST" action="${pageContext.request.contextPath}/AddCar">
         <div class="form-group">
             <label for="inputLicensePlate">Product Name</label>
-            <input type="text" class="form-control" id="license_plate" aria-describedby="productNameHelp" placeholder="License Plate" name="license_plate" value="" required>
+            <input type="text" class="form-control" id="product_name" aria-describedby="productNameHelp" placeholder="License Plate" name="product_name" value="" required>
         </div>
         <div class="form-group">
             <label for="inputParkingSpot">Price</label>
-            <input type="number" class="form-control" id="parking_spot" aria-describedby="priceHelp" placeholder="Price" name="parking_spot" value="" required>
+            <input type="number" class="form-control" id="product_value" aria-describedby="priceHelp" placeholder="Price" name="product_value" value="" required>
         </div>
         <div class="form-group">
             <div class="col-md-6 mb-3">

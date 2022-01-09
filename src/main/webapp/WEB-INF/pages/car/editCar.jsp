@@ -7,16 +7,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:pageTemplate pageTitle="Edit Car">
-    <h1>Edit Car</h1>
+<t:pageTemplate pageTitle="Edit Product">
+    <h1>Edit Product</h1>
         <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/Cars/EditCar">
         <div class="form-group">
             <label for="inputLicensePlate">License Plate</label>
-            <input type="text" class="form-control" id="license_plate" aria-describedby="licensePlateHelp" placeholder="License Plate" name="license_plate" value="${car.licensePlate}" required>
+            <input type="text" class="form-control" id="license_plate" aria-describedby="licensePlateHelp" placeholder="License Plate" name="license_plate" value="${product.licensePlate}" required>
         </div>
         <div class="form-group">
             <label for="inputParkingSpot">Parking Spot</label>
-            <input type="text" class="form-control" id="parking_spot" aria-describedby="parkingSpotHelp" placeholder="Parking Spot" name="parking_spot" value="${car.parkingSpot}" required>
+            <input type="text" class="form-control" id="parking_spot" aria-describedby="parkingSpotHelp" placeholder="Parking Spot" name="parking_spot" value="${product.parkingSpot}" required>
         </div>
         <div class="form-group">
             <div class="col-md-6 mb-3">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="form-group">
-            <input type="hidden" name="car_id" value="${car.id}" />
+            <input type="hidden" name="product_id" value="${product.id}" />
             <button type="submit" class="btn btn-primary " >Save</button>
         </div>
     </form>

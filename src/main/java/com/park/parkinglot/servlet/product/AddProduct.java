@@ -88,7 +88,7 @@ public class AddProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String productName = request.getParameter("product_name");
-        int price = Integer.parseInt(request.getParameter("parking_spot"));
+        int price = Integer.parseInt(request.getParameter("product_value"));
         int ownerId = Integer.parseInt(request.getParameter("owner_id"));
 
         carBean.createProduct(productName, price, ownerId);
