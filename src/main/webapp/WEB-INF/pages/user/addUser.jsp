@@ -43,7 +43,8 @@
                 <select class="custom-select d-block w-100" id="position" name="position" required>
                     <option value=" ">Choose...</option>
                     <option value="ADMINISTRATOR">Administrator</option>
-                    <option value="CLIENT">Client</option>
+                    <option value="DIRECTOR">Director</option>
+                    <option value="NOT_CASHIER">Cashier</option>
                 </select>
                 <div class="invalid-feedback">
                     Please select a position.

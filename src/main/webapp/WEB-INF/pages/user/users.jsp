@@ -15,6 +15,7 @@
             <button class="btn btn-secondary" type="submit">Invoice</button>
         </c:if>
         <c:forEach var="user" items="${users}" varStatus="status">
+            <c:if test="${!user.position.equals('NOT_CASHIER')}">
             <div class="row">
                 <div class="col-md">
                     <input type="checkbox" name="user_ids" value="${user.id}" />
@@ -29,6 +30,7 @@
                     ${user.position}
                 </div>
             </div>
+            </c:if>
         </c:forEach>
     </form>
     <c:forEach var="username" items="${invoices}" varStatus="status">

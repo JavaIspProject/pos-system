@@ -25,10 +25,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Teo
  */
 @DeclareRoles({"AdminRole", "ClientRole"})
-@ServletSecurity(
-        value = @HttpConstraint(
-                rolesAllowed = {"AdminRole"})
-)
 
 @WebServlet(name = "Cars", urlPatterns = {"/Cars"}
 )

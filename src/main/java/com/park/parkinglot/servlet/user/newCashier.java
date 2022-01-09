@@ -9,12 +9,9 @@ import com.park.parkinglot.ejb.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Teo
+ * @author boo_b
  */
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"AdminRole", "ClientRole"}))
-@WebServlet(name = "Users", urlPatterns = {"/Users"})
-public class Users extends HttpServlet {
+@WebServlet(name = "newCashier", urlPatterns = {"/newCashier"})
+public class newCashier extends HttpServlet {
 
     @Inject
     private UserBean userBean;
@@ -48,10 +44,10 @@ public class Users extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Users</title>");
+            out.println("<title>Servlet newCashier</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Users at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet newCashier at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,7 +70,7 @@ public class Users extends HttpServlet {
         List<UserDetails> users = userBean.getAllUsers();
         request.setAttribute("users", users);
 
-        request.getRequestDispatcher("/WEB-INF/pages/user/users.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/user/newCashier.jsp").forward(request, response);
     }
 
     /**
@@ -94,9 +90,11 @@ public class Users extends HttpServlet {
             for (String carIdAsString : userIdsAsString) {
                 userIds.add(Integer.parseInt(carIdAsString));
             }
-            //invoiceBean.getUserIds().addAll(userIds);
+            for(int userId:userIds){
+                userBean.addNewCashier(userId);
+            }
         }
-        response.sendRedirect(request.getContextPath() + "/Users");
+        response.sendRedirect(request.getContextPath() + "/newCashier");
     }
 
     /**

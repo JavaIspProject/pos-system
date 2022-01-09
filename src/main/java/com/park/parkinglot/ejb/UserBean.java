@@ -70,4 +70,12 @@ public class UserBean {
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
+    public void addNewCashier(int cashId){
+        LOG.info("addNewCashier");
+        User user = em.find(User.class, cashId);
+        user.setPosition("CLIENT");
+        
 }
+}
+    
