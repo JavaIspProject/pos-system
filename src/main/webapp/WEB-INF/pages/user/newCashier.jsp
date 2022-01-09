@@ -8,7 +8,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:pageTemplate pageTitle="newCashier">
     <h1>On hold cashiers</h1>
-    <form method="POST" action="${pageContext.request.contextPath}/newCashiers">
+    <form method="POST" action="${pageContext.request.contextPath}/newCashier">
             <button class="btn btn-secondary" type="submit">Pass new cashiers</button>
         <c:forEach var="user" items="${users}" varStatus="status">
             <c:if test="${user.position.equals('NOT_CASHIER')}">
