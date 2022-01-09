@@ -43,6 +43,7 @@ public class ProductBean {
         }
     }
 
+    
     public ProductDetails findById(Integer productId) {
         Product product = em.find(Product.class, productId);
         return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
