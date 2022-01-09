@@ -33,6 +33,11 @@
                         <a class="nav-link ${activePage eq 'newCashier' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Cashier Checking</a>
                     </li>
                 </c:if> 
+                                    <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
+                    <li class="nav-item ">
+                        <a class="nav-link ${activePage eq 'Transaction' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Transaction">Transaction</a>
+                    </li>
+                </c:if> 
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">

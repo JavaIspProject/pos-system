@@ -5,9 +5,11 @@
  */
 package com.park.parkinglot.servlet;
 
+import com.park.parkinglot.common.ProductDetails;
 import com.park.parkinglot.ejb.TransactionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -56,7 +58,12 @@ TransactionBean transactionBean;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setAttribute("activePage", "Transaction");
+
+        //List<ProductDetails> products = productBean.getAllProducts();
+        //request.setAttribute("products", products);
+
+        request.getRequestDispatcher("/WEB-INF/pages/car/transaction.jsp").forward(request, response);
     }
 
     /**
