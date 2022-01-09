@@ -78,7 +78,7 @@ public class AddProduct extends HttpServlet {
             throws ServletException, IOException {
         List<CategoryDetails> categories = categoryBean.getAllCategories();
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("/WEB-INF/pages/car/addCar.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/product/addProduct.jsp").forward(request, response);
     }
 
     /**
@@ -98,7 +98,7 @@ public class AddProduct extends HttpServlet {
 
         productBean.createProduct(productName, price, ownerId);
 
-        response.sendRedirect(request.getContextPath() + "/Cars");
+        response.sendRedirect(request.getContextPath() + "/Products");
     }
 
     /**
