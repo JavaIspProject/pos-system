@@ -9,7 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:pageTemplate pageTitle="Products">
     <h1>Products</h1>
-    <form method="POST" action="${pageContext.request.contextPath}/Cars">
+    <form method="POST" action="${pageContext.request.contextPath}/Products">
         <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCar" role="button">Add Product</a> 
         </c:if>
@@ -33,14 +33,14 @@
                     price: ${product.price} USD
                 </div>
                 <div class="col-md-1">
-                    <img src="${pageContext.request.contextPath}/Cars/Photos?id=${product.id}" width="48" />
+                    <img src="${pageContext.request.contextPath}/Products/Photos?id=${product.id}" width="48" />
                 </div>
                 <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/AddPhoto?id=${product.id}" role="button">Add Photo</a>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Products/AddPhoto?id=${product.id}" role="button">Add Photo</a>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/EditCar?id=${product.id}" role="button">Edit Product</a>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Products/EditCar?id=${product.id}" role="button">Edit Product</a>
                 </div>
                 </c:if>
             </div>    

@@ -22,7 +22,7 @@ import javax.servlet.http.Part;
  * @author Teo
  */
 @MultipartConfig
-@WebServlet(name = "AddPhoto", urlPatterns = {"/Cars/AddPhoto"})
+@WebServlet(name = "AddPhoto", urlPatterns = {"/Products/AddPhoto"})
 public class AddPhoto extends HttpServlet {
 
     /**
@@ -70,7 +70,7 @@ public class AddPhoto extends HttpServlet {
         ProductDetails product = productBean.findById(carId);
         request.setAttribute("product", product);
         
-        request.getRequestDispatcher("/WEB-INF/pages/car/addPhoto.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/product/addPhoto.jsp").forward(request, response);
     }
 
     /**
@@ -95,7 +95,7 @@ public class AddPhoto extends HttpServlet {
         filePart.getInputStream().read(fileContent);
         
         productBean.addPhotoToProduct(carId, fileName, fileType, fileContent);
-        response.sendRedirect(request.getContextPath() + "/Cars");
+        response.sendRedirect(request.getContextPath() + "/Products");
     }
 
     /**

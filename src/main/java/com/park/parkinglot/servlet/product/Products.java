@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @DeclareRoles({"AdminRole", "ClientRole","DirectorRole"})
 
-@WebServlet(name = "Cars", urlPatterns = {"/Cars"}
+@WebServlet(name = "Products", urlPatterns = {"/Products"}
 )
 public class Products extends HttpServlet {
 
@@ -62,12 +62,12 @@ public class Products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "Cars");
+        request.setAttribute("activePage", "Products");
 
         List<ProductDetails> products = productBean.getAllProducts();
         request.setAttribute("products", products);
 
-        request.getRequestDispatcher("/WEB-INF/pages/car/cars.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/product/products.jsp").forward(request, response);
     }
 
     /**
@@ -89,7 +89,7 @@ public class Products extends HttpServlet {
             }
             productBean.deleteProductsByIds(carIds);
         }
-        response.sendRedirect(request.getContextPath() + "/Cars");
+        response.sendRedirect(request.getContextPath() + "/Products");
     }
 
     /**

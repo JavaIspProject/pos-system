@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Teo
  */
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {"AdminRole"}))
-@WebServlet(name = "EditCar", urlPatterns = {"/Cars/EditCar"})
+@WebServlet(name = "EditCar", urlPatterns = {"/Products/EditCar"})
 public class EditProduct extends HttpServlet {
 
     @Inject
@@ -79,7 +79,7 @@ public class EditProduct extends HttpServlet {
         ProductDetails car = productBean.findById(carId);
         request.setAttribute("car", car);
 
-        request.getRequestDispatcher("/WEB-INF/pages/car/editCar.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/product/editProduct.jsp").forward(request, response);
     }
 
     /**
@@ -100,7 +100,7 @@ public class EditProduct extends HttpServlet {
 
         productBean.updateProduct(carId, licensePlate, price, userId);
 
-        response.sendRedirect(request.getContextPath() + "/Cars");
+        response.sendRedirect(request.getContextPath() + "/Products");
     }
 
     /**
