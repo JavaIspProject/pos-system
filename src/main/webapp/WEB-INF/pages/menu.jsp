@@ -15,34 +15,39 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-                        <li class="nav-item ">
-                            <a class="nav-link ${activePage eq 'Cars' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Cars">Products</a>
-                        </li>
-                    </c:if>
-                    <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
+                <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                    <li class="nav-item ">
+                        <a class="nav-link ${activePage eq 'Cars' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Cars">Products</a>
+                    </li>
+                </c:if>
+                <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Users</a>
                     </li>
                 </c:if>
-                    <li class="nav-item">
-                        <a class="nav-link ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ?  'active' : ' ' }" aria-current="page" 
-                           href="${pageContext.request.contextPath}/productList.jsp">About</a>
+                
+                    <li class="nav-item ">
+                        <a class="nav-link ${activePage eq 'newCashier' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Cashier Checking</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <c:choose>
-                            <c:when test="${pageContext.request.getRemoteUser() == null}">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
-                            </c:otherwise>
-                        </c:choose> 
-                    </li>
-                </ul>
-                </ul>
-            </div>
+                
+                <li class="nav-item">
+                    <a class="nav-link ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ?  'active' : ' ' }" aria-current="page" 
+                       href="${pageContext.request.contextPath}/productList.jsp">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <c:choose>
+                        <c:when test="${pageContext.request.getRemoteUser() == null}">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                        </c:otherwise>
+                    </c:choose> 
+                </li>
+            </ul>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
