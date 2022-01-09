@@ -23,28 +23,21 @@ public class ReceiptBean {
 
     @Inject
     Receipt receipt;
+    @Inject
+    ProductBean productBean;
     
     @PersistenceContext
     private EntityManager em;
     private static final Logger LOG = Logger.getLogger(TransactionBean.class.getName());
     
-    public void printReceiptById(Integer receiptId){
-//        Receipt receipt = em.find(Receipt.class, receiptId);
-//        for(String )
-//            String[] carIdsAsString = receipt.getSoldItemsIds();
-//        if(receipt.getSoldItemsIds()!=null){
-//            List<Integer> carIds = new ArrayList<>();
-//            for (String carIdAsString : carIdsAsString) {
-//                carIds.add(Integer.parseInt(carIdAsString));
-//            }
-//           // productBean.deleteProductsByIds(carIds);
-//        }
+    public String[] getProductsByReceiptById(Integer receiptId){
+      Receipt receipt = em.find(Receipt.class, receiptId);
+      String[] individualProductsId=receipt.getSoldItemsIds().split(" ");
+      String[] individualProducts = new String[individualProductsId.length];
+      for(int i=0;i<individualProductsId.length;i++)
+      {
+      individualProducts[i]=productBean.findById(Integer.parseInt(individualProductsId[i])).getProductName();
+      }
+      return individualProducts;
     }
-    
-     public ReceiptDetails findById(Integer receiptId) {
-        Receipt receipt = em.find(Receipt.class, receiptId);
-        return new ReceiptDetails(receipt.getId(), receipt.getSoldItemsIds(),receipt.getTotal());
-    }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }
