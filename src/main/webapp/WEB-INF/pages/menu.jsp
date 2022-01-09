@@ -27,7 +27,7 @@
                 </c:if>
                     <li class="nav-item">
                         <a class="nav-link ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ?  'active' : ' ' }" aria-current="page" 
-                           href="${pageContext.request.contextPath}/about.jsp">About</a>
+                           href="${pageContext.request.contextPath}/productList.jsp">About</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
