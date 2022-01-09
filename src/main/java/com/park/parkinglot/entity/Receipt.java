@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Teo
+ * @author Te
  */
 @Entity
 public class Receipt implements Serializable {
@@ -21,6 +21,24 @@ public class Receipt implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String soldItemsIds;
+    private Double total;
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public String getSoldItemsIds() {
+        return soldItemsIds;
+    }
+
+    public void setSoldItemsIds(String soldItemsIds) {
+        this.soldItemsIds = soldItemsIds;
+    }
 
     public Integer getId() {
         return id;
@@ -54,5 +72,5 @@ public class Receipt implements Serializable {
     public String toString() {
         return "com.park.parkinglot.entity.Receipt[ id=" + id + " ]";
     }
-    
+
 }

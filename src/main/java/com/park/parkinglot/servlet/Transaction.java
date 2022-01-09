@@ -10,6 +10,8 @@ import com.park.parkinglot.ejb.ProductBean;
 import com.park.parkinglot.ejb.TransactionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
@@ -46,15 +48,15 @@ ProductBean productBean;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int productId = Integer.parseInt(request.getParameter("product_id"));
         try{
+        int productId = Integer.parseInt(request.getParameter("product_id"));
         productBean.findById(productId); 
         transactionBean.addProductById(productId);
         }
         catch(Exception e){
-        request.setAttribute("transactionMessage", "Incorrect product!");
+        //request.setAttribute("transactionMessage", "Incorrect product!");
         }
-        
+       
         response.sendRedirect(request.getContextPath() + "/Transaction");
     }
     @Override
