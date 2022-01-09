@@ -12,23 +12,21 @@ import javax.persistence.Id;
 
 /**
  *
- * @author boo_b
+ * @author Teo
  */
 @Entity
-public class Recepit implements Serializable {
+public class Receipt implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    private String soldItemsOnRecepit;
+    private Integer id;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,10 +40,10 @@ public class Recepit implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Recepit)) {
+        if (!(object instanceof Receipt)) {
             return false;
         }
-        Recepit other = (Recepit) object;
+        Receipt other = (Receipt) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -54,7 +52,7 @@ public class Recepit implements Serializable {
 
     @Override
     public String toString() {
-        return "com.park.parkinglot.entity.Recepit[ id=" + id + " ]";
+        return "com.park.parkinglot.entity.Receipt[ id=" + id + " ]";
     }
     
 }
