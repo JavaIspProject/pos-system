@@ -6,6 +6,7 @@
 package com.park.parkinglot.servlet;
 
 import com.park.parkinglot.common.ProductDetails;
+import com.park.parkinglot.ejb.ProductBean;
 import com.park.parkinglot.ejb.TransactionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +30,9 @@ public class Transaction extends HttpServlet {
 @Inject
 TransactionBean transactionBean;
 
+@Inject
+ProductBean productBean;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,8 +45,15 @@ TransactionBean transactionBean;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         int productId = Integer.parseInt(request.getParameter("product_id"));
+        try{
+        productBean.findById(productId); 
         transactionBean.addProductById(productId);
+        }
+        catch(Exception e){
+        request.setAttribute("transactionMessage", "Incorrect product!");
+        }
         
         response.sendRedirect(request.getContextPath() + "/Transaction");
     }

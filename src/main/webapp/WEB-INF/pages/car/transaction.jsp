@@ -7,11 +7,16 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:pageTemplate pageTitle="Products">
+    <c:if test="${transactionMessage != null}">
+        <div class="alert alert-warning" role="alert">
+            ${message}
+        </div>
+    </c:if>
     <h1>Products</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Transaction">
         <div class="form-group">
             <label for="inputProductName">Product Code</label>
-            <input type="number" class="form-control" id="product_id" aria-describedby="productCodeHelp" placeholder="Product Code" name="product_id" value="" required>
+            <input type="number" autofocus class="form-control" id="product_id" aria-describedby="productCodeHelp" placeholder="Product Code" name="product_id" value="" required>
         </div>
         <button type="submit" class="btn btn-primary">Add product to cart</button>
     </form>
