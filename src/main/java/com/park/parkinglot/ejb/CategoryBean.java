@@ -69,7 +69,7 @@ public class CategoryBean {
     }
           
               public ProductDetails findProductByCategoryId(Integer categoryId) {
-        TypedQuery<Product> typedQuery = em.createQuery("SELECT p FROM Photo p where p.product.id = :id", Product.class).
+        TypedQuery<Product> typedQuery = em.createQuery("SELECT p FROM Product p where p.product.id = :id", Product.class).
                 setParameter("id", categoryId);
         List<Product> products = typedQuery.getResultList();
         if (products.isEmpty()) {

@@ -66,45 +66,48 @@ public class Categories extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.setAttribute("activePage", "Categories");
+        request.setAttribute("activePage", "Categories");
+            List<CategoryDetails> categories = categoryBean.getAllCategories();
+            
+            request.setAttribute("categories", categories);
 
-        List<CategoryDetails> categories = categoryBean.getAllCategories();
-        request.setAttribute("categories", categories);
-
-        request.getRequestDispatcher("/WEB-INF/pages/car/categories.jsp").forward(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String[] categoryIdsAsString = request.getParameterValues("category_ids");
-        if (categoryIdsAsString != null) {
-            List<Integer> categoryIds = new ArrayList<>();
-            for (String carIdAsString : categoryIdsAsString) {
-                categoryIds.add(Integer.parseInt(carIdAsString));
-            }
-            categoryBean.deleteCategoriesByIds(categoryIds);
-
+            request.getRequestDispatcher("/WEB-INF/pages/product/categories.jsp").forward(request, response);
         }
-        response.sendRedirect(request.getContextPath() + "/Categories");
-    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Handles the HTTP <code>POST</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doPost
+        (HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            String[] categoryIdsAsString = request.getParameterValues("category_ids");
+            if (categoryIdsAsString != null) {
+                List<Integer> categoryIds = new ArrayList<>();
+                for (String carIdAsString : categoryIdsAsString) {
+                    categoryIds.add(Integer.parseInt(carIdAsString));
+                }
+                categoryBean.deleteCategoriesByIds(categoryIds);
+
+            }
+            response.sendRedirect(request.getContextPath() + "/Categories");
+        }
+
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }

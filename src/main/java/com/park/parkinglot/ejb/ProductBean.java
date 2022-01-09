@@ -8,7 +8,6 @@ import com.park.parkinglot.common.ProductDetails;
 import com.park.parkinglot.common.PhotoDetails;
 import com.park.parkinglot.entity.Product;
 import com.park.parkinglot.entity.Photo;
-import com.park.parkinglot.entity.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -62,12 +61,12 @@ public class ProductBean {
         return detailsList;
     }
 
-    public void createProduct(String productName, Integer price, Integer categoryId) {
+    public void createProduct(String productName, Integer price, String categoryName) {
         LOG.info("createProduct");
         Product product = new Product();
         product.setProductName(productName);
         product.setPrice(price);
-        product.setCategoryId(categoryId);
+        product.setCategoryName(categoryName);
 
         //User user = em.find(User.class, userId);
         //user.getProducts().add(product);
@@ -78,13 +77,14 @@ public class ProductBean {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void updateProduct(Integer productId, String productName, Integer price, Integer categoryId) {
+    public void updateProduct(Integer productId, String productName, Integer price, String categoryName) {
         LOG.info("updateProducts");
         Product product = em.find(Product.class, productId);
         product.setProductName(productName);
         product.setPrice(price);
-        product.setCategoryId(categoryId);
+        product.setCategoryName(categoryName);
 
+        
         //User oldUser = product.getUser();
         //oldUser.getProducts().remove(product);
 

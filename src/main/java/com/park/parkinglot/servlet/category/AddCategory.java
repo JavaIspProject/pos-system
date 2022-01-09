@@ -68,7 +68,7 @@ public class AddCategory extends HttpServlet {
         List<CategoryDetails> categories = categoryBean.getAllCategories();
         request.setAttribute("categories", categories);
 
-        request.getRequestDispatcher("/WEB-INF/pages/car/addCategory.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/product/addCategory.jsp").forward(request, response);
     }
 
     /**

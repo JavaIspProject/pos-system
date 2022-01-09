@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Teo
  */
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {"AdminRole"}))
-@WebServlet(name = "EditCar", urlPatterns = {"/Products/EditCar"})
+@WebServlet(name = "EditProduct", urlPatterns = {"/EditProduct"})
 public class EditProduct extends HttpServlet {
 
     @Inject
@@ -98,11 +98,11 @@ public class EditProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String productName = request.getParameter("product_name");
-        int price = Integer.parseInt(request.getParameter("price"));
+        int price = Integer.parseInt(request.getParameter("product_value"));
         int productId = Integer.parseInt(request.getParameter("product_id"));
-        int userId = Integer.parseInt(request.getParameter("category_id"));
+        String categoryName = request.getParameter("category_name");
 
-        productBean.updateProduct(productId, productName, price, userId);
+        productBean.updateProduct(productId, productName, price, categoryName);
 
         response.sendRedirect(request.getContextPath() + "/Products");
     }

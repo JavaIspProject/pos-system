@@ -94,9 +94,9 @@ public class AddProduct extends HttpServlet {
             throws ServletException, IOException {
         String productName = request.getParameter("product_name");
         int price = Integer.parseInt(request.getParameter("product_value"));
-        int categoryId = Integer.parseInt(request.getParameter("category_id"));
+        String categoryName = request.getParameter("category_name");
 
-        productBean.createProduct(productName, price, categoryId);
+        productBean.createProduct(productName, price, categoryName);
 
         response.sendRedirect(request.getContextPath() + "/Products");
     }

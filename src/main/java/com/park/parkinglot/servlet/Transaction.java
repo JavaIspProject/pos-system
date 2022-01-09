@@ -41,7 +41,7 @@ ProductBean productBean;
         request.setAttribute("activePage", "Transaction");
 
         request.setAttribute("productList", transactionBean.displayCart());
-        request.getRequestDispatcher("/WEB-INF/pages/car/transaction.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/product/transaction.jsp").forward(request, response);
     }
 
     @Override

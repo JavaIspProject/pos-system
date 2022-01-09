@@ -9,7 +9,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:pageTemplate pageTitle="Edit Product">
     <h1>Edit Product</h1>
-        <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/Cars/EditCar">
+        <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/EditProduct">
         <div class="form-group">
             <label for="inputProductName">Product Name</label>
             <input type="text" class="form-control" id="product_name" aria-describedby="productNameHelp" placeholder="Product Name" name="product_name" value="${product.productName}" required>
@@ -21,10 +21,10 @@
         <div class="form-group">
             <div class="col-md-6 mb-3">
                 <label for="owner_id">Category</label>
-                <select class="custom-select d-block w-100" id="owner_id" name="category_id">
+                <select class="custom-select d-block w-100" id="owner_id" name="category_name" required>
                     <option value="${product.categoryName}">${product.categoryName}</option>
                     <c:forEach var="categories" items="${categories}" varStatus="status">
-                        <option value="${categories.id}">${categories.categoryName}</option>
+                        <option value="${categories.categoryName}">${categories.categoryName}</option>
                     </c:forEach>
                 </select>
                 <div class="invalid-feedback">Please select an owner.</div>

@@ -21,10 +21,10 @@
         <div class="form-group">
             <div class="col-md-6 mb-3">
                 <label for="owner_id">Category</label>
-                <select class="custom-select d-block w-100" id="category_id" name="category_id">
+                <select class="custom-select d-block w-100" id="category_id" name="category_name">
                     <option value=" ">Choose...</option>
                     <c:forEach var="categories" items="${categories}" varStatus="status">
-                        <option value="${categories.id}">${categories.categoryName}</option>
+                        <option value="${categories.categoryName}">${categories.categoryName}</option>
                     </c:forEach>
                 </select>
                 <div class="invalid-feedback">Please select an owner.</div>

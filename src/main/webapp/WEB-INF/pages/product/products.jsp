@@ -19,7 +19,7 @@
         <c:forEach var="product" items="${products}" varStatus="status">
             <div class="row mb-1">
                 <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-                <div class="col-md">
+                <div class="col-md-1">
                     <input type="checkbox" name="product_ids" value="${product.id}"/>
                 </div>
                 </c:if>
@@ -32,7 +32,10 @@
                 <div class="col-md-2">
                     price: ${product.price} USD
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
+                    ${product.categoryName} 
+                </div>
+                <div class="col-md-2">
                     <img src="${pageContext.request.contextPath}/Products/Photos?id=${product.id}" width="48" />
                 </div>
                 <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
@@ -40,7 +43,7 @@
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Products/AddPhoto?id=${product.id}" role="button">Add Photo</a>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Products/EditCar?id=${product.id}" role="button">Edit Product</a>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProduct?id=${product.id}" role="button">Edit Product</a>
                 </div>
                 </c:if>
             </div>    
