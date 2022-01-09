@@ -24,12 +24,12 @@
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Users</a>
                     </li>
-                </c:if>
-                
+                </c:if>   
+                <c:if test="${pageContext.request.isUserInRole('DirectorRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'newCashier' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Cashier Checking</a>
                     </li>
-                
+                </c:if>  
                 <li class="nav-item">
                     <a class="nav-link ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ?  'active' : ' ' }" aria-current="page" 
                        href="${pageContext.request.contextPath}/productList.jsp">About</a>

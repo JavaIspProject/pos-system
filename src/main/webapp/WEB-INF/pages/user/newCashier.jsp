@@ -12,20 +12,20 @@
             <button class="btn btn-secondary" type="submit">Pass new cashiers</button>
         <c:forEach var="user" items="${users}" varStatus="status">
             <c:if test="${user.position.equals('NOT_CASHIER')}">
-            <div class="row">
-                <div class="col-md">
-                    <input type="checkbox" name="user_ids" value="${user.id}" />
+                <div class="row">
+                    <div class="col-md">
+                        <input type="checkbox" name="user_ids" value="${user.id}" />
+                    </div>
+                    <div class="col-md-4">
+                        ${user.username}
+                    </div>
+                    <div class="col-md-4">
+                        ${user.email}
+                    </div>
+                    <div class="col-md-3">
+                        ${user.position}
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    ${user.username}
-                </div>
-                <div class="col-md-4">
-                    ${user.email}
-                </div>
-                <div class="col-md-3">
-                    ${user.position}
-                </div>
-            </div>
             </c:if>
         </c:forEach>
     </form>
