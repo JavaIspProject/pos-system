@@ -32,11 +32,7 @@
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'newCashier' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Cashier Checking</a>
                     </li>
-                </c:if>  
-                <li class="nav-item">
-                    <a class="nav-link ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ?  'active' : ' ' }" aria-current="page" 
-                       href="${pageContext.request.contextPath}/productList.jsp">About</a>
-                </li>
+                </c:if> 
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
