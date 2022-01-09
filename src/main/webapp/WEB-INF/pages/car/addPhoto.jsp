@@ -13,7 +13,7 @@
           action="${pageContext.request.contextPath}/Cars/AddPhoto">
         <div class="row">
             <div class="col-md-6 mb-3">
-                License plate: ${car.licensePlate}
+                License plate: ${product.productName}
             </div>
         </div>
         <div class="row">
@@ -24,7 +24,7 @@
                     Photo is required.
                 </div>
             </div>
-            <input type="hidden" name="car_id" value="${car.id}" />
+            <input type="hidden" name="product_id" value="${product.id}" />
             <button type="submit" class="btn btn-primary  btn-lg btn-block" >Save</button>
     </form>
 </t:pageTemplate>

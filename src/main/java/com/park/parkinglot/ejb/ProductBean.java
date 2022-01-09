@@ -45,7 +45,7 @@ public class ProductBean {
 
     public ProductDetails findById(Integer productId) {
         Product product = em.find(Product.class, productId);
-        return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryId());
+        return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
     }
 
     private List<ProductDetails> copyProductsToDetails(List<Product> products) {
@@ -55,7 +55,7 @@ public class ProductBean {
             ProductDetails productDetails = new ProductDetails(product.getId(),
                     product.getProductName(),
                     product.getPrice(),
-                    product.getCategoryId());
+                    product.getCategoryName());
             detailsList.add(productDetails);
         }
         return detailsList;

@@ -29,9 +29,9 @@
                 <div class="col-md-1">
                     <img src="${pageContext.request.contextPath}/Cars/Photos?id=${product.id}" width="48" />
                 </div>
-                <div class="col-md-2">
+<!--                <div class="col-md-2">
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/AddPhoto?id=${product.id}" role="button">Add Photo</a>
-                </div>
+                </div>-->
                 <div class="col-md-2">
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Cars/EditCar?id=${product.id}" role="button">Edit Product</a>
                 </div>

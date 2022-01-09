@@ -5,7 +5,6 @@
 package com.park.parkinglot.entity;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,68 +12,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author Teo
  */
 @Entity
-@Table(name = "PRODUCTS")
-public class Product implements Serializable {
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    private String productName;
-    
-    private Integer price;
-    
-    private Integer categoryId;
-    
     private String categoryName;
+    
+        @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Category_KEY")
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "USER_KEY")
+    private Category category;
 
-    //private User user;
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Photo photo;
-
-    public String getProductName() {
-        return productName;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-//    public User getUser() {
-//        return user;
-//    }
-
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-    public Photo getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Integer getId() {
@@ -84,14 +46,6 @@ public class Product implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
-        public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public String getCategoryName() {
         return categoryName;
@@ -100,6 +54,7 @@ public class Product implements Serializable {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
+    
 
     @Override
     public int hashCode() {
@@ -111,10 +66,10 @@ public class Product implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
+        if (!(object instanceof Category)) {
             return false;
         }
-        Product other = (Product) object;
+        Category other = (Category) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -123,7 +78,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "com.park.parkinglot.entity.Product[ id=" + id + " ]";
+        return "com.park.parkinglot.entity.Category[ id=" + id + " ]";
     }
-
+    
 }

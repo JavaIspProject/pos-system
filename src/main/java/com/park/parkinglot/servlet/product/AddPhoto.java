@@ -35,7 +35,7 @@ public class AddPhoto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Inject
-    ProductBean carBean;
+    ProductBean productBean;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,8 +67,8 @@ public class AddPhoto extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer carId = Integer.parseInt(request.getParameter("id"));
-        ProductDetails car = carBean.findById(carId);
-        request.setAttribute("car", car);
+        ProductDetails product = productBean.findById(carId);
+        request.setAttribute("product", product);
         
         request.getRequestDispatcher("/WEB-INF/pages/car/addPhoto.jsp").forward(request, response);
     }
@@ -84,7 +84,7 @@ public class AddPhoto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String carIdAsString = request.getParameter("car_id");
+        String carIdAsString = request.getParameter("photo_id");
         Integer carId = Integer.parseInt(carIdAsString);
         
         Part filePart = request.getPart("file");
@@ -94,7 +94,7 @@ public class AddPhoto extends HttpServlet {
         byte[] fileContent = new byte[(int) fileSize];
         filePart.getInputStream().read(fileContent);
         
-        carBean.addPhotoToProduct(carId, fileName, fileType, fileContent);
+        productBean.addPhotoToProduct(carId, fileName, fileType, fileContent);
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
 

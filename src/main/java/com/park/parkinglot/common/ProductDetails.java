@@ -16,13 +16,13 @@ public class ProductDetails implements java.io.Serializable {
 
     private Integer price;
 
-    private Integer categoryId;
+    private String categoryName;
 
-    public ProductDetails(Integer id, String productName, Integer price, Integer categoryId) {
+    public ProductDetails(Integer id, String productName, Integer price, String categoryName) {
         this.id = id;
         this.productName = productName;
         this.price = price;
-        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public Integer getId() {
@@ -37,8 +37,8 @@ public class ProductDetails implements java.io.Serializable {
         return price;
     }
     
-    public Integer getCategoryId() {
-        return categoryId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
 }

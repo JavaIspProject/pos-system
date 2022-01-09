@@ -25,6 +25,11 @@
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Users</a>
                     </li>
                 </c:if>
+                    <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                    <li class="nav-item ">
+                        <a class="nav-link ${activePage eq 'Category' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Categories">Categories</a>
+                    </li>
+                </c:if>
                     <li class="nav-item">
                         <a class="nav-link ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ?  'active' : ' ' }" aria-current="page" 
                            href="${pageContext.request.contextPath}/about.jsp">About</a>

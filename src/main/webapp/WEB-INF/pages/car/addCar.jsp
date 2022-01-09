@@ -11,11 +11,11 @@
     <h1>Add Product</h1>
     <form class="needs-validation" noValidate method="POST" action="${pageContext.request.contextPath}/AddCar">
         <div class="form-group">
-            <label for="inputLicensePlate">Product Name</label>
-            <input type="text" class="form-control" id="product_name" aria-describedby="productNameHelp" placeholder="License Plate" name="product_name" value="" required>
+            <label for="inputProductName">Product Name</label>
+            <input type="text" class="form-control" id="product_name" aria-describedby="productNameHelp" placeholder="Product Name" name="product_name" value="" required>
         </div>
         <div class="form-group">
-            <label for="inputParkingSpot">Price</label>
+            <label for="inputProductValue">Price</label>
             <input type="number" class="form-control" id="product_value" aria-describedby="priceHelp" placeholder="Price" name="product_value" value="" required>
         </div>
         <div class="form-group">
@@ -30,6 +30,22 @@
                 <div class="invalid-feedback">Please select an owner.</div>
             </div>
         </div>
+            <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" 
+          action="${pageContext.request.contextPath}/Cars/AddPhoto">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                License plate: ${product.productName}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="file">Photo</label>
+                <input type="file" name="file" required>
+                <div class="invalid-feedback">
+                    Photo is required.
+                </div>
+            </div>
+            <input type="hidden" name="product_id" value="${product.id}" />
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
