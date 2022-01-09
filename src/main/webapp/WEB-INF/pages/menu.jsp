@@ -20,7 +20,7 @@
                 </li>
                 <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                     <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'Category' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Categories">Categories</a>
+                        <a class="nav-link ${activePage eq 'Categories' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Categories">Categories</a>
                     </li>
                 </c:if>
                 <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
