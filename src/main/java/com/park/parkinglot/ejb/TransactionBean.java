@@ -1,7 +1,6 @@
 package com.park.parkinglot.ejb;
 
 import com.park.parkinglot.common.ProductDetails;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

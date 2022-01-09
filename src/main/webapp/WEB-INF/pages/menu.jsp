@@ -18,7 +18,6 @@
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Cars' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Cars">Products</a>
                     </li>
-                </c:if>
                     <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Category' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Categories">Categories</a>
