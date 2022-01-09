@@ -15,11 +15,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Cars' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Cars">Products</a>
                     </li>
-                </c:if>
                 <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Users</a>
