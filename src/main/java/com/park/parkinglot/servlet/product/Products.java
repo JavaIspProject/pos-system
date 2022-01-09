@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Teo
  */
-@DeclareRoles({"AdminRole", "ClientRole"})
+@DeclareRoles({"AdminRole", "ClientRole","DirectRole"})
 
 @WebServlet(name = "Cars", urlPatterns = {"/Cars"}
 )
