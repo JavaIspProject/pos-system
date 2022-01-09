@@ -4,7 +4,9 @@
  */
 package com.park.parkinglot.servlet.product;
 
+import com.park.parkinglot.common.CategoryDetails;
 import com.park.parkinglot.common.UserDetails;
+import com.park.parkinglot.ejb.CategoryBean;
 import com.park.parkinglot.ejb.ProductBean;
 import com.park.parkinglot.ejb.UserBean;
 import java.io.IOException;
@@ -32,6 +34,9 @@ public class AddProduct extends HttpServlet {
 
     @Inject
     ProductBean productBean;
+    
+    @Inject
+    private CategoryBean categoryBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,8 +76,8 @@ public class AddProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<UserDetails> users = userBean.getAllUsers();
-        request.setAttribute("users", users);
+        List<CategoryDetails> categories = categoryBean.getAllCategories();
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/pages/car/addCar.jsp").forward(request, response);
     }
 
