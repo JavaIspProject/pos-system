@@ -22,33 +22,15 @@
             <div class="col-md-6 mb-3">
                 <label for="owner_id">Owner</label>
                 <select class="custom-select d-block w-100" id="owner_id" name="owner_id">
-                    <option value="">choose...</option>
-                    <c:forEach var="user" items="${users}" varStatus="status">
-                        <option value="${user.id}">${user.username}</option>
+                    <option value=" ">Choose...</option>
+                    <c:forEach var="categories" items="${categories}" varStatus="status">
+                        <option value="${categories.id}">${categories.categoryName}</option>
                     </c:forEach>
                 </select>
                 <div class="invalid-feedback">Please select an owner.</div>
             </div>
         </div>
-            <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" 
-          action="${pageContext.request.contextPath}/Cars/AddPhoto">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                License plate: ${product.productName}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="file">Photo</label>
-                <input type="file" name="file" required>
-                <div class="invalid-feedback">
-                    Photo is required.
-                </div>
-            </div>
-            <input type="hidden" name="product_id" value="${product.id}" />
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
     <script>
         (function () {

@@ -15,23 +15,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'Cars' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Cars">Products</a>
-                    </li>
-                    <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                <li class="nav-item ">
+                    <a class="nav-link ${activePage eq 'Cars' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Cars">Products</a>
+                </li>
+                <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Category' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Categories">Categories</a>
                     </li>
                 </c:if>
-                    <li class="nav-item">
-                        <a class="nav-link ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ?  'active' : ' ' }" aria-current="page" 
-                           href="${pageContext.request.contextPath}/about.jsp">About</a>
                 <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Users</a>
                     </li>
                 </c:if>   
-                <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                <c:if test="${pageContext.request.isUserInRole('DirectorRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'newCashier' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Cashier Checking</a>
                     </li>

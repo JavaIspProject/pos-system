@@ -4,9 +4,11 @@
  */
 package com.park.parkinglot.servlet.category;
 
+import com.park.parkinglot.common.CategoryDetails;
 import com.park.parkinglot.ejb.CategoryBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +25,7 @@ public class AddCategory extends HttpServlet {
 
     @Inject
     private CategoryBean categoryBean;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +43,7 @@ public class AddCategory extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddCategory</title>");            
+            out.println("<title>Servlet AddCategory</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AddCategory at " + request.getContextPath() + "</h1>");
@@ -62,6 +64,10 @@ public class AddCategory extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        List<CategoryDetails> categories = categoryBean.getAllCategories();
+        request.setAttribute("categories", categories);
+
         request.getRequestDispatcher("/WEB-INF/pages/car/addCategory.jsp").forward(request, response);
     }
 
