@@ -23,7 +23,7 @@
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Users</a>
                     </li>
                 </c:if>   
-                <c:if test="${pageContext.request.isUserInRole('DirectorRole')}">
+                <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                     <li class="nav-item ">
                         <a class="nav-link ${activePage eq 'newCashier' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Cashier Checking</a>
                     </li>
