@@ -24,6 +24,9 @@
                 </div>
                 </c:if>
                 <div class="col-md-2">
+                    ${product.id}
+                </div>
+                <div class="col-md-2">
                     ${product.productName}
                 </div>
                 <div class="col-md-2">

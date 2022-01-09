@@ -35,7 +35,6 @@ TransactionBean transactionBean;
         request.setAttribute("activePage", "Transaction");
 
         request.setAttribute("productList", transactionBean.displayCart());
-        
         request.getRequestDispatcher("/WEB-INF/pages/car/transaction.jsp").forward(request, response);
     }
 
@@ -44,6 +43,8 @@ TransactionBean transactionBean;
             throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("product_id"));
         transactionBean.addProductById(productId);
+        
+        response.sendRedirect(request.getContextPath() + "/Transaction");
     }
     @Override
     public String getServletInfo() {
