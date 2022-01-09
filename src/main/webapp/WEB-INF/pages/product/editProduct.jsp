@@ -11,20 +11,20 @@
     <h1>Edit Product</h1>
         <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/Cars/EditCar">
         <div class="form-group">
-            <label for="inputLicensePlate">License Plate</label>
-            <input type="text" class="form-control" id="license_plate" aria-describedby="licensePlateHelp" placeholder="License Plate" name="license_plate" value="${product.licensePlate}" required>
+            <label for="inputProductName">Product Name</label>
+            <input type="text" class="form-control" id="product_name" aria-describedby="productNameHelp" placeholder="Product Name" name="product_name" value="${product.productName}" required>
         </div>
         <div class="form-group">
-            <label for="inputParkingSpot">Parking Spot</label>
-            <input type="text" class="form-control" id="parking_spot" aria-describedby="parkingSpotHelp" placeholder="Parking Spot" name="parking_spot" value="${product.parkingSpot}" required>
+            <label for="inputProductValue">Price</label>
+            <input type="number" class="form-control" id="product_value" aria-describedby="priceHelp" placeholder="Price" name="product_value" value="${product.price}" required>
         </div>
         <div class="form-group">
             <div class="col-md-6 mb-3">
-                <label for="owner_id">Owner</label>
-                <select class="custom-select d-block w-100" id="owner_id" name="owner_id">
-                    <option value="">choose...</option>
-                    <c:forEach var="user" items="${users}" varStatus="status">
-                        <option value="${user.id}" ${car.username eq user.username ? 'selected' : ''}>${user.username}</option>
+                <label for="owner_id">Category</label>
+                <select class="custom-select d-block w-100" id="owner_id" name="category_id">
+                    <option value="${product.categoryName}">${product.categoryName}</option>
+                    <c:forEach var="categories" items="${categories}" varStatus="status">
+                        <option value="${categories.id}">${categories.categoryName}</option>
                     </c:forEach>
                 </select>
                 <div class="invalid-feedback">Please select an owner.</div>

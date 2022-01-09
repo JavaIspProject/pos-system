@@ -10,12 +10,23 @@ package com.park.parkinglot.common;
  */
 public class ReceiptDetails {
 
-    public ReceiptDetails(Integer id, String soldItemsIds) {
+    public ReceiptDetails(Integer id, String soldItemsIds, Double total) {
         this.id = id;
         this.soldItemsIds = soldItemsIds;
+        this.total = total;
     }
 
     private Integer id;
+
+    private Double total;
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
 
     private String soldItemsIds;
 

@@ -4,8 +4,10 @@
  */
 package com.park.parkinglot.servlet.product;
 
+import com.park.parkinglot.common.CategoryDetails;
 import com.park.parkinglot.common.ProductDetails;
 import com.park.parkinglot.common.UserDetails;
+import com.park.parkinglot.ejb.CategoryBean;
 import com.park.parkinglot.ejb.ProductBean;
 import com.park.parkinglot.ejb.UserBean;
 import java.io.IOException;
@@ -34,6 +36,8 @@ public class EditProduct extends HttpServlet {
     @Inject
     ProductBean productBean;
 
+    @Inject
+    private CategoryBean categoryBean;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -72,12 +76,12 @@ public class EditProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<UserDetails> users = userBean.getAllUsers();
-        request.setAttribute("users", users);
-
-        int carId = Integer.parseInt(request.getParameter("id"));
-        ProductDetails car = productBean.findById(carId);
-        request.setAttribute("car", car);
+        List<CategoryDetails> categories = categoryBean.getAllCategories();
+        request.setAttribute("categories", categories);
+        
+        int productId = Integer.parseInt(request.getParameter("id"));
+        ProductDetails product = productBean.findById(productId);
+        request.setAttribute("product", product);
 
         request.getRequestDispatcher("/WEB-INF/pages/product/editProduct.jsp").forward(request, response);
     }
@@ -93,12 +97,12 @@ public class EditProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String licensePlate = request.getParameter("license_plate");
-        int price = Integer.parseInt(request.getParameter("parking_spot"));
-        int carId = Integer.parseInt(request.getParameter("car_id"));
-        int userId = Integer.parseInt(request.getParameter("owner_id"));
+        String productName = request.getParameter("product_name");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int productId = Integer.parseInt(request.getParameter("product_id"));
+        int userId = Integer.parseInt(request.getParameter("category_id"));
 
-        productBean.updateProduct(carId, licensePlate, price, userId);
+        productBean.updateProduct(productId, productName, price, userId);
 
         response.sendRedirect(request.getContextPath() + "/Products");
     }

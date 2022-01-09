@@ -6,6 +6,8 @@ package com.park.parkinglot.ejb;
 
 import com.park.parkinglot.common.ReceiptDetails;
 import com.park.parkinglot.entity.Receipt;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -27,7 +29,16 @@ public class ReceiptBean {
     private static final Logger LOG = Logger.getLogger(TransactionBean.class.getName());
     
     public void printReceiptById(Integer receiptId){
-        
+//        Receipt receipt = em.find(Receipt.class, receiptId);
+//        for(String )
+//            String[] carIdsAsString = receipt.getSoldItemsIds();
+//        if(receipt.getSoldItemsIds()!=null){
+//            List<Integer> carIds = new ArrayList<>();
+//            for (String carIdAsString : carIdsAsString) {
+//                carIds.add(Integer.parseInt(carIdAsString));
+//            }
+//           // productBean.deleteProductsByIds(carIds);
+//        }
     }
     
      public ReceiptDetails findById(Integer receiptId) {

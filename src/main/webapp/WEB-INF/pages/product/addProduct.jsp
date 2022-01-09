@@ -20,8 +20,8 @@
         </div>
         <div class="form-group">
             <div class="col-md-6 mb-3">
-                <label for="owner_id">Owner</label>
-                <select class="custom-select d-block w-100" id="owner_id" name="owner_id">
+                <label for="owner_id">Category</label>
+                <select class="custom-select d-block w-100" id="category_id" name="category_id">
                     <option value=" ">Choose...</option>
                     <c:forEach var="categories" items="${categories}" varStatus="status">
                         <option value="${categories.id}">${categories.categoryName}</option>

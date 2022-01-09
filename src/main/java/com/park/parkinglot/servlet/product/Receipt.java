@@ -4,7 +4,6 @@
  */
 package com.park.parkinglot.servlet.product;
 
-import com.park.parkinglot.common.ProductDetails;
 import com.park.parkinglot.ejb.ProductBean;
 import com.park.parkinglot.ejb.ReceiptBean;
 import com.park.parkinglot.ejb.TransactionBean;
