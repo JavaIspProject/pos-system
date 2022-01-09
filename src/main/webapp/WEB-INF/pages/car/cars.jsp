@@ -7,24 +7,24 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:pageTemplate pageTitle="Cars">
-    <h1>Cars</h1>
+<t:pageTemplate pageTitle="Products">
+    <h1>Products</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Cars">
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCar" role="button">Add Car</a> 
         <button class="btn btn-danger" type="submit">Delete Cars</button>
-        <c:forEach var="car" items="${products}" varStatus="status">
+        <c:forEach var="product" items="${products}" varStatus="status">
             <div class="row mb-1">
                 <div class="col-md">
                     <input type="checkbox" name="car_ids" value="${product.id}"/>
                 </div>
                 <div class="col-md-2">
-                    ${car.productName}
+                    ${product.productName}
                 </div>
                 <div class="col-md-2">
-                    ${car.price}
+                    ${product.price}
                 </div>
 <!--                <div class="col-md-2">
-                   ${car.username}
+                   ${product.username}
                 </div>-->
                 <div class="col-md-1">
                     <img src="${pageContext.request.contextPath}/Cars/Photos?id=${product.id}" width="48" />

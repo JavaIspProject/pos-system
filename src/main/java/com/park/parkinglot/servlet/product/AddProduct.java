@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.park.parkinglot.servlet.car;
+package com.park.parkinglot.servlet.product;
 
 import com.park.parkinglot.common.UserDetails;
 import com.park.parkinglot.ejb.ProductBean;

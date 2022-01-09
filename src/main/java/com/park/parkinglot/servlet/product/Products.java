@@ -2,14 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.park.parkinglot.servlet.car;
+package com.park.parkinglot.servlet.product;
 
-import com.park.parkinglot.common.PhotoDetails;
+import com.park.parkinglot.common.ProductDetails;
 import com.park.parkinglot.ejb.ProductBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +24,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Teo
  */
-@WebServlet(name = "Photos", urlPatterns = {"/Cars/Photos"})
-public class Photos extends HttpServlet {
+@DeclareRoles({"AdminRole", "ClientRole"})
+@ServletSecurity(
+        value = @HttpConstraint(
+                rolesAllowed = {"AdminRole"})
+)
+
+@WebServlet(name = "Cars", urlPatterns = {"/Cars"}
+)
+public class Products extends HttpServlet {
+
+    @Inject
+    private ProductBean carBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +54,10 @@ public class Photos extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Photos</title>");
+            out.println("<title>Servlet Cars</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Photos at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Cars at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,21 +72,16 @@ public class Photos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Inject
-    ProductBean carBean;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer carId = Integer.parseInt(request.getParameter("id"));
-        PhotoDetails photo = carBean.findPhotoByProductId(carId);
-        if (photo != null) {
-            response.setContentType(photo.getFileType());
-            response.setContentLength(photo.getFileContent().length);
-            response.getOutputStream().write(photo.getFileContent());
-        } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-        }
+        request.setAttribute("activePage", "Cars");
+        request.setAttribute("numberOfFreeParkingSpots", 10);
+
+        List<ProductDetails> cars = carBean.getAllProducts();
+        request.setAttribute("cars", cars);
+
+        request.getRequestDispatcher("/WEB-INF/pages/car/cars.jsp").forward(request, response);
     }
 
     /**
@@ -85,7 +95,15 @@ public class Photos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String[] carIdsAsString = request.getParameterValues("car_ids");
+        if (carIdsAsString != null) {
+            List<Integer> carIds = new ArrayList<>();
+            for (String carIdAsString : carIdsAsString) {
+                carIds.add(Integer.parseInt(carIdAsString));
+            }
+            carBean.deleteProductsByIds(carIds);
+        }
+        response.sendRedirect(request.getContextPath() + "/Cars");
     }
 
     /**

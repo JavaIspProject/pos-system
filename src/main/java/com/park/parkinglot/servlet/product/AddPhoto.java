@@ -2,40 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.park.parkinglot.servlet.car;
+package com.park.parkinglot.servlet.product;
 
 import com.park.parkinglot.common.ProductDetails;
 import com.park.parkinglot.ejb.ProductBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Teo
  */
-@DeclareRoles({"AdminRole", "ClientRole"})
-@ServletSecurity(
-        value = @HttpConstraint(
-                rolesAllowed = {"AdminRole"})
-)
-
-@WebServlet(name = "Cars", urlPatterns = {"/Cars"}
-)
-public class Products extends HttpServlet {
-
-    @Inject
-    private ProductBean carBean;
+@MultipartConfig
+@WebServlet(name = "AddPhoto", urlPatterns = {"/Cars/AddPhoto"})
+public class AddPhoto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +34,9 @@ public class Products extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Inject
+    ProductBean carBean;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -54,10 +45,10 @@ public class Products extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Cars</title>");
+            out.println("<title>Servlet AddPhoto</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Cars at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddPhoto at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,13 +66,11 @@ public class Products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "Cars");
-        request.setAttribute("numberOfFreeParkingSpots", 10);
-
-        List<ProductDetails> cars = carBean.getAllProducts();
-        request.setAttribute("cars", cars);
-
-        request.getRequestDispatcher("/WEB-INF/pages/car/cars.jsp").forward(request, response);
+        Integer carId = Integer.parseInt(request.getParameter("id"));
+        ProductDetails car = carBean.findById(carId);
+        request.setAttribute("car", car);
+        
+        request.getRequestDispatcher("/WEB-INF/pages/car/addPhoto.jsp").forward(request, response);
     }
 
     /**
@@ -95,14 +84,17 @@ public class Products extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] carIdsAsString = request.getParameterValues("car_ids");
-        if (carIdsAsString != null) {
-            List<Integer> carIds = new ArrayList<>();
-            for (String carIdAsString : carIdsAsString) {
-                carIds.add(Integer.parseInt(carIdAsString));
-            }
-            carBean.deleteProductsByIds(carIds);
-        }
+        String carIdAsString = request.getParameter("car_id");
+        Integer carId = Integer.parseInt(carIdAsString);
+        
+        Part filePart = request.getPart("file");
+        String fileName = filePart.getSubmittedFileName();
+        String fileType = filePart.getContentType();
+        long fileSize = filePart.getSize();
+        byte[] fileContent = new byte[(int) fileSize];
+        filePart.getInputStream().read(fileContent);
+        
+        carBean.addPhotoToProduct(carId, fileName, fileType, fileContent);
         response.sendRedirect(request.getContextPath() + "/Cars");
     }
 
