@@ -84,8 +84,8 @@ public class AddPhoto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String carIdAsString = request.getParameter("photo_id");
-        Integer carId = Integer.parseInt(carIdAsString);
+        String productIdAsString = request.getParameter("product_id");
+        Integer productId = Integer.parseInt(productIdAsString);
         
         Part filePart = request.getPart("file");
         String fileName = filePart.getSubmittedFileName();
@@ -94,7 +94,7 @@ public class AddPhoto extends HttpServlet {
         byte[] fileContent = new byte[(int) fileSize];
         filePart.getInputStream().read(fileContent);
         
-        productBean.addPhotoToProduct(carId, fileName, fileType, fileContent);
+        productBean.addPhotoToProduct(productId, fileName, fileType, fileContent);
         response.sendRedirect(request.getContextPath() + "/Products");
     }
 
