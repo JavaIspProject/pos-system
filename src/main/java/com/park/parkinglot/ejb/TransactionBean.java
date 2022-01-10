@@ -32,13 +32,11 @@ public class TransactionBean {
         totalValue+=productBean.findById(productId).getPrice();
     }
 
-    public void emptyCart(Collection<Integer> productId) {
+    public void emptyCart() {
         LOG.info("deleteProductsByIds");
-        for (Integer id : productId) {
-            ProductDetails product = productBean.findById(id);
-            transactionProducts.remove(product);
+        for (ProductDetails id : transactionProducts) {
+            transactionProducts.remove(id);
             totalValue = 0.0;
-            
         }
     }
 
@@ -55,7 +53,11 @@ public class TransactionBean {
     {
         String finalReceipt=null;
     for (ProductDetails product : transactionProducts) {
+        if(finalReceipt==null){
+            finalReceipt=product.getProductName();
+        }else{
             finalReceipt=finalReceipt+" "+product.getProductName();
+        }  
         }
     return finalReceipt;
     }

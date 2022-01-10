@@ -31,10 +31,12 @@
                     price: ${productList.price} USD
                 </div>
                 <div class="col-md-1">
-                    <img src="${pageContext.request.contextPath}/Cars/Photos?id=${productList.id}" width="48" />
+                    <img src="${pageContext.request.contextPath}/Products/Photos?id=${product.id}" width="48" />
                 </div>
             </div>    
         </c:forEach>
     </form>
+         
+         
 
 </t:pageTemplate>
