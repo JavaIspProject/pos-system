@@ -43,6 +43,15 @@ public class TransactionBean {
 
     public List<ProductDetails> displayCart() {
         return transactionProducts;
+        
+    }
+    public String getIdListFromCart()
+    {
+        String finalReceipt=null;
+    for (ProductDetails product : transactionProducts) {
+            finalReceipt=finalReceipt+" "+product.getId().toString();
+        }
+    return finalReceipt;
     }
 
 }

@@ -85,16 +85,7 @@ ReceiptBean receiptBean;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String[] carIdsAsString = request.getParameterValues("product_ids");
-        if (carIdsAsString != null) {
-            List<Integer> carIds = new ArrayList<>();
-            for (String carIdAsString : carIdsAsString) {
-                carIds.add(Integer.parseInt(carIdAsString));
-            }
-            
-            transactionBean.displayCart();
-        }
-        response.sendRedirect(request.getContextPath() + "/Cars");
+        
     }
 
     /**

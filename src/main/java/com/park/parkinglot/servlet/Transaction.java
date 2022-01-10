@@ -54,7 +54,7 @@ ProductBean productBean;
         transactionBean.addProductById(productId);
         }
         catch(Exception e){
-        //request.setAttribute("transactionMessage", "Incorrect product!");
+        request.setAttribute("transactionMessage", "Incorrect product!");
         }
        
         response.sendRedirect(request.getContextPath() + "/Transaction");

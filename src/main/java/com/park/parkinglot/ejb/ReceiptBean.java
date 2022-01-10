@@ -5,6 +5,7 @@
 package com.park.parkinglot.ejb;
 
 import com.park.parkinglot.common.ReceiptDetails;
+import com.park.parkinglot.entity.Product;
 import com.park.parkinglot.entity.Receipt;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class ReceiptBean {
     @Inject
     Receipt receipt;
     @Inject
+    TransactionBean transactionBean;
+    @Inject
     ProductBean productBean;
     
     @PersistenceContext
@@ -40,4 +43,14 @@ public class ReceiptBean {
       }
       return individualProducts;
     }
+    
+    
+        public void createReceipt(Double total,String products) {
+        LOG.info("createProduct");
+        Receipt receipt = new Receipt();
+        //receipt.setSoldItemsId(products); vez ce prostii is pe aici 
+        receipt.setTotal(total);
+        em.persist(receipt);
+    }
+    
 }

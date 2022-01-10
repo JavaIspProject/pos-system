@@ -74,5 +74,4 @@ public class Receipt implements Serializable {
     public String toString() {
         return "com.park.parkinglot.entity.Receipt[ id=" + id + " ]";
     }
-
 }
