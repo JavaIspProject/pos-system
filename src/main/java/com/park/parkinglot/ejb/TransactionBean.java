@@ -22,11 +22,13 @@ public class TransactionBean {
 
     private static final Logger LOG = Logger.getLogger(TransactionBean.class.getName());
     List<ProductDetails> transactionProducts = new ArrayList<>();
+    Double totalValue = 0.0;
     @PersistenceContext
     private EntityManager em;
 
     public void addProductById(Integer productId) {
         transactionProducts.add(productBean.findById(productId));
+        totalValue+=productBean.findById(productId).getPrice();
     }
 
     public void emptyCart(Collection<Integer> productId) {
@@ -34,11 +36,14 @@ public class TransactionBean {
         for (Integer id : productId) {
             ProductDetails product = productBean.findById(id);
             transactionProducts.remove(product);
+            totalValue = 0.0;
+            
         }
     }
 
     public void removeProductById(Integer productId) {
         transactionProducts.remove(productBean.findById(productId));
+        totalValue-=productBean.findById(productId).getPrice();
     }
 
     public List<ProductDetails> displayCart() {
