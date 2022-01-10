@@ -94,7 +94,7 @@ ReceiptBean receiptBean;
             
             transactionBean.displayCart();
         }
-        response.sendRedirect(request.getContextPath() + "/Cars");
+        response.sendRedirect(request.getContextPath() + "/Transaction");
     }
 
     /**
