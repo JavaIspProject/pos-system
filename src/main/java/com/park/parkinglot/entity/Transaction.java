@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package com.park.parkinglot.entity;
 
@@ -13,40 +14,23 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Te
+ * @author Oli
  */
 @Entity
 @Table(name = "RECEIPTS")
-public class Receipt implements Serializable {
+public class Transaction implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String soldItemsIds;
-    private Double total;
+    private Long id;
+    
 
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public String getSoldItemsIds() {
-        return soldItemsIds;
-    }
-
-    public void setSoldItemsIds(String soldItemsIds) {
-        this.soldItemsIds = soldItemsIds;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -60,10 +44,10 @@ public class Receipt implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Receipt)) {
+        if (!(object instanceof Transaction)) {
             return false;
         }
-        Receipt other = (Receipt) object;
+        Transaction other = (Transaction) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -72,6 +56,7 @@ public class Receipt implements Serializable {
 
     @Override
     public String toString() {
-        return "com.park.parkinglot.entity.Receipt[ id=" + id + " ]";
+        return "com.park.parkinglot.entity.Transaction[ id=" + id + " ]";
     }
+    
 }

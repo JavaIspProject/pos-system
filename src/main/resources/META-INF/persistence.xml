@@ -8,7 +8,7 @@
     <class>com.park.parkinglot.entity.Photo</class>
     <class>com.park.parkinglot.entity.Product</class>
     <class>com.park.parkinglot.entity.Category</class>
-    <class>com.park.parkinglot.entity.Receipt</class>
+    <class>com.park.parkinglot.entity.Transaction</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Pos_System"/>
