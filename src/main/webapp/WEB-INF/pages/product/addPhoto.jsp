@@ -7,13 +7,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:pageTemplate pageTitle="Add Car">
-    <h1>Add Photo</h1>
+<t:pageTemplate pageTitle="Add Photo">
+    <h1>Add Photo to product</h1>
     <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" 
-          action="${pageContext.request.contextPath}/Cars/AddPhoto">
+          action="${pageContext.request.contextPath}/Products/AddPhoto">
         <div class="row">
             <div class="col-md-6 mb-3">
-                License plate: ${product.productName}
+                Product Name: ${product.productName}
             </div>
         </div>
         <div class="row">
