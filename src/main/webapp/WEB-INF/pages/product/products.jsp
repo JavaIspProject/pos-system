@@ -23,19 +23,19 @@
                     <input type="checkbox" name="product_ids" value="${product.id}"/>
                 </div>
                 </c:if>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     ${product.id}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     ${product.productName}
                 </div>
                 <div class="col-md-2">
                     price: ${product.price} USD
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     ${product.categoryName} 
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <img src="${pageContext.request.contextPath}/Products/Photos?id=${product.id}" width="48" />
                 </div>
                 <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
