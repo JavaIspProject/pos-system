@@ -10,7 +10,7 @@
 <t:pageTemplate pageTitle="Add Photo">
     <h1>Add Photo to product</h1>
     <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" 
-          action="${pageContext.request.contextPath}/product/AddPhoto">
+          action="${pageContext.request.contextPath}/Products/AddPhoto">
         <div class="row">
             <div class="col-md-6 mb-3">
                 Product Name: ${product.productName}
