@@ -39,7 +39,6 @@ public class Product implements Serializable {
     private String categoryName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "USER_KEY")
 
     //private User user;
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

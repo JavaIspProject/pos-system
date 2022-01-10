@@ -1,6 +1,7 @@
 package com.park.parkinglot.ejb;
 
 import com.park.parkinglot.common.ProductDetails;
+import com.park.parkinglot.entity.Transaction;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -50,13 +51,21 @@ public class TransactionBean {
         return transactionProducts;
         
     }
-    public String getIdListFromCart()
+    public String getListFromCart()
     {
         String finalReceipt=null;
     for (ProductDetails product : transactionProducts) {
-            finalReceipt=finalReceipt+" "+product.getId().toString();
+            finalReceipt=finalReceipt+" "+product.getProductName();
         }
     return finalReceipt;
+    }
+    
+    public void createReceipt() {
+        LOG.info("createReceipt");
+        Transaction transaction = new Transaction();
+        transaction.setListOfProducts(getListFromCart());
+        transaction.setTotal(totalValue);
+        em.persist(transaction);
     }
 
 }

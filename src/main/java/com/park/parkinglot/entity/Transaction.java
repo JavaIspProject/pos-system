@@ -24,6 +24,24 @@ public class Transaction implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Double total;
+    private String listOfProducts;
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public String getListOfProducts() {
+        return listOfProducts;
+    }
+
+    public void setListOfProducts(String listOfProducts) {
+        this.listOfProducts = listOfProducts;
+    }
     
 
     public Long getId() {
