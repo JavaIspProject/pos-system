@@ -18,15 +18,6 @@
             <button type="submit" class="btn btn-primary" name="button_action" value="returnProduct">Return product</button>
        </div>
     </form>
-    <c:forEach var="product" items="${productList}" varStatus="status">
-        <div class="row mb-1">
-            <div class="col-md-2">
-                ${product.productName}
-            </div>
-            <div class="col-md-2">
-                price: ${product.price} USD
-            </div>
-        </div>    
-    </c:forEach>
+    
 
 </t:pageTemplate>

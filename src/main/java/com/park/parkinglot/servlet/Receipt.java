@@ -64,8 +64,8 @@ public class Receipt extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("activePage", "Receipt");
 
-        request.setAttribute("productList", returnBean.displayCart());
-        request.setAttribute("totalValue", returnBean.getTotalValue());
+        //request.setAttribute("productList", returnBean.displayCart());
+        //request.setAttribute("totalValue", returnBean.getTotalValue());
         request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
     }
 
@@ -84,15 +84,17 @@ public class Receipt extends HttpServlet {
         processRequest(request, response);
         if (request.getParameter("button_action").equals("showReceipt")) {
             try {
+                returnBean.emptyCart();
                 Integer receiptId = Integer.parseInt(request.getParameter("receipt_id"));
                 request.setAttribute("productList", returnBean.findById(receiptId));
                 request.setAttribute("totalValue", returnBean.getTotalById(receiptId));
+                request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
             } catch (Exception e) {
                  request.setAttribute("returnMessage", "Incorrect product!");
                  //request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
             }
         }
-        response.sendRedirect(request.getContextPath() + "/Receipt");
+        response.sendRedirect(request.getContextPath() + "/Transaction");
     }
 
     /**
