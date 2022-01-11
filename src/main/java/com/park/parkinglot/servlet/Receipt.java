@@ -4,8 +4,11 @@
  */
 package com.park.parkinglot.servlet;
 
+import com.park.parkinglot.ejb.ProductBean;
+import com.park.parkinglot.ejb.TransactionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author boo_b
+ * @author Teo
  */
 @WebServlet(name = "Receipt", urlPatterns = {"/Receipt"})
 public class Receipt extends HttpServlet {
@@ -54,11 +57,16 @@ public class Receipt extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+@Inject
+    TransactionBean transactionBean;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "Receipt");
-        processRequest(request, response);
+
+        request.setAttribute("productList", transactionBean.displayCart());
+        request.setAttribute("totalValue", transactionBean.getTotalValue());
         request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
     }
 
