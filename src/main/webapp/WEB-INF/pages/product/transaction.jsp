@@ -18,7 +18,7 @@
     <br />
     <br />
     <form method="POST" action="${pageContext.request.contextPath}/Transaction">
-        <button class="btn btn-primary" type="submit"name="button_action" value="receipt">Print receipt</button>
+        <button class="btn btn-primary" type="submit" name="button_action" value="receipt">Print receipt</button>
         <button class="btn btn-danger" type="submit" name="button_action" value="delete">Delete Products</button>
         <div class="col-md-2">
             price: ${totalValue} USD
