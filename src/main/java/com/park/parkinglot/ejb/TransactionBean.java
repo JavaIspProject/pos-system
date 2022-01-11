@@ -20,8 +20,7 @@ public class TransactionBean {
 
     @Inject
     ProductBean productBean;
-    
-    
+
     private static final Logger LOG = Logger.getLogger(TransactionBean.class.getName());
     private List<ProductDetails> transactionProducts = new ArrayList<>();
     private Double totalValue = 0.0;
@@ -35,57 +34,52 @@ public class TransactionBean {
 
     public void addProductById(Integer productId) {
         transactionProducts.add(productBean.findById(productId));
-        totalValue+=productBean.findById(productId).getPrice();
+        totalValue += productBean.findById(productId).getPrice();
     }
 
     public void emptyCart() {
         LOG.info("emptyCart");
-        List<ProductDetails>delete=new ArrayList();
+        List<ProductDetails> delete = new ArrayList();
         for (ProductDetails i : transactionProducts) {
-           delete.add(i);
+            delete.add(i);
         }
         transactionProducts.removeAll(delete);
         totalValue = 0.0;
     }
-    
+
     public void removeProductByIdList(Collection<Integer> ids) {
-     LOG.info("deleteProductsByIds");
-        List<String>delete=new ArrayList();
-        for (Integer productId : ids) {
-            delete.add(productBean.findById(productId).getProductName());
-            totalValue-=productBean.findById(productId).getPrice();
-        }
-        for(ProductDetails prd : transactionProducts){
-            System.out.println(prd.getId()+" "+prd.getProductName()+" "+prd.getPrice()+" "+prd.getCategoryName());
-        }
-        System.out.println(delete);
-        System.out.println("delete");
-        for(String i : delete){
-            System.out.println(productBean.findByProductName(i).getProductName());
-            transactionProducts.remove(productBean.findByProductName(i));
-        }
-        ProductDetails prdDtl=new ProductDetails(551,"masda",89999,"M");
-        transactionProducts.remove(prdDtl);
+        LOG.info("deleteProductsByIds");
         System.out.println(transactionProducts);
- }
+        List<ProductDetails> delete = new ArrayList();
+        for (Integer productId : ids) {
+            int del = ids.size();
+            for (ProductDetails i : transactionProducts) {
+                if (i.getId().equals(productId) && del > 0) {
+                    delete.add(i);
+                    totalValue -= productBean.findById(productId).getPrice();
+                    del -= 1;
+                }
+            }
+        }
+        transactionProducts.removeAll(delete);
+    }
 
     public List<ProductDetails> displayCart() {
         return transactionProducts;
-        
     }
-    public String getListFromCart()
-    {
-        String finalReceipt=null;
-    for (ProductDetails product : transactionProducts) {
-        if(finalReceipt==null){
-            finalReceipt=product.getProductName();
-        }else{
-            finalReceipt=finalReceipt+" "+product.getProductName();
-        }  
+
+    public String getListFromCart() {
+        String finalReceipt = null;
+        for (ProductDetails product : transactionProducts) {
+            if (finalReceipt == null) {
+                finalReceipt = product.getProductName();
+            } else {
+                finalReceipt = finalReceipt + " " + product.getProductName();
+            }
         }
-    return finalReceipt;
+        return finalReceipt;
     }
-    
+
     public void createReceipt() {
         LOG.info("createReceipt");
         Transaction transaction = new Transaction();

@@ -50,31 +50,35 @@ public class Transaction extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getParameter("button_action").equals("delete")) {
-             String[] productsIdsAsString = request.getParameterValues("product_id_for_delete");
-             if (productsIdsAsString != null){
-                 List<Integer> productsIds = new ArrayList<>();
-                 for (String productIdAsString : productsIdsAsString) {
-                     productsIds.add(Integer.parseInt(productIdAsString));
-                 }
-                 transactionBean.removeProductByIdList(productsIds);
-            
+            String[] productsIdsAsString = request.getParameterValues("product_ids_for_delete");
+            if (productsIdsAsString != null) {
+                List<Integer> productsIds = new ArrayList<>();
+                for (String productIdAsString : productsIdsAsString) {
+                    productsIds.add(Integer.parseInt(productIdAsString));
+                }
+                transactionBean.removeProductByIdList(productsIds);
+
+            }
         }
         if (request.getParameter("button_action").equals("addProduct")) {
+            int productId = Integer.parseInt(request.getParameter("product_id"));
             try {
-                int productId = Integer.parseInt(request.getParameter("product_id"));
                 productBean.findById(productId);
                 transactionBean.addProductById(productId);
             } catch (Exception e) {
                 request.setAttribute("transactionMessage", "Incorrect product!");
+                request.setAttribute("productList", transactionBean.displayCart());
+                request.setAttribute("totalValue", transactionBean.getTotalValue());
+                request.getRequestDispatcher("/WEB-INF/pages/product/transaction.jsp").forward(request, response);
             }
         }
         if (request.getParameter("button_action").equals("receipt")) {
-            transactionBean.createReceipt();
-            transactionBean.emptyCart();
+                transactionBean.createReceipt();
+                transactionBean.emptyCart();
         }
         response.sendRedirect(request.getContextPath() + "/Transaction");
-        }
-}
+    }
+
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -7,6 +7,11 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:pageTemplate pageTitle="Products">
+    <c:if test="${transactionMessage != null}">
+        <div class="alert alert-warning" role="alert">
+            ${transactionMessage}
+        </div>
+    </c:if>
     <h1>Cart</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Transaction">
         <div class="form-group">
@@ -26,7 +31,7 @@
         <c:forEach var="product" items="${productList}" varStatus="status">
             <div class="row mb-1">
                 <div class="col-md-1">
-                    <input type="checkbox" name="product_id_for_delete" value="${product.id}"/>
+                    <input type="checkbox" name="product_ids_for_delete" value="${product.id}"/>
                 </div>
                 <div class="col-md">
                     <input type="hidden" name="product_ids" value="${product.id}"/>
