@@ -64,7 +64,7 @@ public class Receipt extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "Receipt");
-
+        
         request.setAttribute("productList", transactionBean.displayCart());
         request.setAttribute("totalValue", transactionBean.getTotalValue());
         request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
@@ -81,6 +81,7 @@ public class Receipt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String[] receiptIdAsString = request.getParameterValues("receipt_id");
         processRequest(request, response);
     }
 
