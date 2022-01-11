@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Teo
+ * @author No! I AM SPARTACUS
  */
 @WebServlet(name = "Receipt", urlPatterns = {"/Receipt"})
 public class Receipt extends HttpServlet {
@@ -80,8 +80,6 @@ public class Receipt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] receiptIdAsString = request.getParameterValues("receipt_id");
-        processRequest(request, response);
         if (request.getParameter("button_action").equals("showReceipt")) {
             try {
                 returnBean.emptyCart();
@@ -90,11 +88,26 @@ public class Receipt extends HttpServlet {
                 request.setAttribute("totalValue", returnBean.getTotalById(receiptId));
                 request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
             } catch (Exception e) {
-                 request.setAttribute("returnMessage", "Incorrect product!");
-                 //request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
+                request.setAttribute("returnMessage", "Incorrect product!");
             }
         }
-        response.sendRedirect(request.getContextPath() + "/Transaction");
+        //made by SPARTACUS
+        if (request.getParameter("button_action").equals("returnProduct")) {
+            returnBean.emptyCart();
+            Integer receiptId = Integer.parseInt(request.getParameter("receipt_id"));
+            returnBean.findById(receiptId);
+            Integer productId = Integer.parseInt(request.getParameter("product_id"));
+            Double refundValue = returnBean.refundValueByProductId(receiptId, productId);
+            returnBean.emptyCart();
+            returnBean.addProductById(productId);
+            returnBean.returnProductValue(refundValue);
+            returnBean.createReceipt();
+            returnBean.emptyCart();
+
+            request.setAttribute("returnMessage", "Please return  " + (0.0 - refundValue) + " USD");
+            request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
+        }
+        response.sendRedirect(request.getContextPath() + "/Receipt");
     }
 
     /**

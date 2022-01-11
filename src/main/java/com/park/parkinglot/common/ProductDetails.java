@@ -6,7 +6,7 @@ package com.park.parkinglot.common;
 
 /**
  *
- * @author Teo
+ * @author No! I AM SPARTACUS
  */
 public class ProductDetails implements java.io.Serializable {
 

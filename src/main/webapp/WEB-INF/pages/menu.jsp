@@ -1,7 +1,7 @@
 <%-- 
     Document   : menu
     Created on : Oct 27, 2021, 11:00:30 AM
-    Author     : Teo
+    Author     : No! I AM SPARTACUS
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,7 +9,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}">Parking lot</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}">POS system made by SPARTACUS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

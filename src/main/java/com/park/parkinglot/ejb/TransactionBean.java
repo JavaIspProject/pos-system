@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Oli
+ * @author No! I AM SPARTACUS
  */
 @Stateless
 public class TransactionBean {
@@ -64,6 +64,10 @@ public class TransactionBean {
         transactionProducts.removeAll(delete);
     }
 
+    public void returnProductValue(Double value){
+        totalValue=value;
+    }
+    
     public List<ProductDetails> findById(Integer receiptId) {
         String productsFromReceipt = em.find(Transaction.class, receiptId).getListOfProducts();
         List<ProductDetails> receiptProducts = new ArrayList<>();
@@ -78,16 +82,16 @@ public class TransactionBean {
         return em.find(Transaction.class, receiptId).getTotal();
     }
 
-    public Integer refundValueByProductId(Integer receiptId, Integer productId) {
+    public Double refundValueByProductId(Integer receiptId, Integer productId) {
         String productsFromReceipt = em.find(Transaction.class, receiptId).getListOfProducts();
         String[] separateProductNames = productsFromReceipt.split(" ");
 
         for (String product : separateProductNames) {
             if (productBean.findByName(product).getId().equals(productId)) {
-                return 0 - productBean.findByName(product).getPrice();
+                return 0.0 - productBean.findByName(product).getPrice();
             }
         }
-        return 0;
+        return 0.0;
     }
 
     public List<ProductDetails> displayCart() {

@@ -3,6 +3,6 @@
 
 
 <t:pageTemplate pageTitle="Parking lot"> 
-            <h1>Welcome to the parking lot</h1>
+            <h1>POS system made by SPARTACUS</h1>
 </t:pageTemplate>
     
