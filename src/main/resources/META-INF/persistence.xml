@@ -3,13 +3,13 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="my_persistence_unit" transaction-type="JTA">
     <jta-data-source>jdbc/sample</jta-data-source>
-    <class>com.park.parkinglot.entity.User</class>
     <class>com.park.parkinglot.entity.NewEntity</class>
-    <class>com.park.parkinglot.entity.Photo</class>
-    <class>com.park.parkinglot.entity.Product</class>
-    <class>com.park.parkinglot.entity.Category</class>
     <class>com.park.parkinglot.entity.Receipt</class>
-    <class>com.park.parkinglot.entity.Transaction</class>
+    <class>com.pos.pos_system.entity.Product</class>
+    <class>com.pos.pos_system.entity.Category</class>
+    <class>com.pos.pos_system.entity.Photo</class>
+    <class>com.pos.pos_system.entity.User</class>
+    <class>com.pos.pos_system.entity.Transaction</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Pos_System"/>
