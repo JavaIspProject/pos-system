@@ -12,11 +12,18 @@
         <div class="form-group">
             <label for="inputProductName">Receipt Code</label>
             <input type="number" autofocus class="form-control" id="receipt_id" aria-describedby="productCodeHelp" placeholder="Receipt Code" name="receipt_id" value="" required>
+        <c:forEach var="product" items="${productList}" varStatus="status">
+            <div class="row mb-1">
+                <div class="col-md-2">
+                    ${product.productName}
+                </div>
+                <div class="col-md-2">
+                    price: ${product.price} USD
+                </div>
+            </div>    
+        </c:forEach>
         </div>
         <button type="submit" class="btn btn-primary" name="button_action" value="showReceipt">Show receipt details</button>
     </form>
     
-    
-
-
 </t:pageTemplate>
