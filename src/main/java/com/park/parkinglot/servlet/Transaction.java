@@ -50,23 +50,14 @@ public class Transaction extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getParameter("button_action").equals("delete")) {
-//             String[] productsIdsAsString = request.getParameterValues("product_id_for_delete");
-//             if (productsIdsAsString != null){
-//                 List<Integer> productsIds = new ArrayList<>();
-//                 for (String productIdAsString : productsIdsAsString) {
-//                     productsIds.add(Integer.parseInt(productIdAsString));
-//                 }
-//                 transactionBean.removeProductByIdList(productsIds);
+             String[] productsIdsAsString = request.getParameterValues("product_id_for_delete");
+             if (productsIdsAsString != null){
+                 List<Integer> productsIds = new ArrayList<>();
+                 for (String productIdAsString : productsIdsAsString) {
+                     productsIds.add(Integer.parseInt(productIdAsString));
+                 }
+                 transactionBean.removeProductByIdList(productsIds);
             
-            int productId = Integer.parseInt(request.getParameter("product_id_for_delete"));
-            ProductDetails productDetails =  productBean.findById(productId);
-            if (productDetails != null){
-                List<Integer> productsIds = new ArrayList<>();
-                for (int id : productDetails.getId()) {
-                   productsIds.add(id);
-                }
-                transactionBean.removeProductByIdList(productsIds);
-            }
         }
         if (request.getParameter("button_action").equals("addProduct")) {
             try {
@@ -82,8 +73,8 @@ public class Transaction extends HttpServlet {
             transactionBean.emptyCart();
         }
         response.sendRedirect(request.getContextPath() + "/Transaction");
-    }
-
+        }
+}
     @Override
     public String getServletInfo() {
         return "Short description";
