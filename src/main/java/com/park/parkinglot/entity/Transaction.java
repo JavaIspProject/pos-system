@@ -26,7 +26,7 @@ public class Transaction implements Serializable {
     private Long id;
     private Double total;
     private String listOfProducts;
-
+    
     public Double getTotal() {
         return total;
     }

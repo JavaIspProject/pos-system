@@ -11,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -37,10 +35,7 @@ public class Product implements Serializable {
     private Integer categoryId;
     
     private String categoryName;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-
-    //private User user;
+    
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Photo photo;
 
