@@ -20,10 +20,16 @@ public class TransactionBean {
 
     @Inject
     ProductBean productBean;
-
+    
+    
     private static final Logger LOG = Logger.getLogger(TransactionBean.class.getName());
-    List<ProductDetails> transactionProducts = new ArrayList<>();
-    Double totalValue = 0.0;
+    private List<ProductDetails> transactionProducts = new ArrayList<>();
+    private Double totalValue = 0.0;
+    private TransactionBean transactionBean;
+
+    public Double getTotalValue() {
+        return totalValue;
+    }
     @PersistenceContext
     private EntityManager em;
 
@@ -33,17 +39,31 @@ public class TransactionBean {
     }
 
     public void emptyCart() {
-        LOG.info("deleteProductsByIds");
-        for (ProductDetails id : transactionProducts) {
-            transactionProducts.remove(id);
-            totalValue = 0.0;
+        LOG.info("emptyCart");
+        List<ProductDetails>delete=new ArrayList();
+        for (ProductDetails i : transactionProducts) {
+           delete.add(i);
         }
+        transactionProducts.removeAll(delete);
+        totalValue = 0.0;
     }
-
-    public void removeProductById(Integer productId) {
-        transactionProducts.remove(productBean.findById(productId));
-        totalValue-=productBean.findById(productId).getPrice();
-    }
+    
+    public void removeProductByIdList(Collection<Integer> ids) {
+     LOG.info("deleteProductsByIds");
+        System.out.println(transactionProducts);
+        List<String>delete=new ArrayList();
+        for (Integer productId : ids) {
+            delete.add(productBean.findById(productId).getProductName());
+            totalValue-=productBean.findById(productId).getPrice();
+        }
+        System.out.println(delete);
+        System.out.println("delete");
+        for(String i : delete){
+            System.out.println(productBean.findById(i).getProductName());
+            transactionProducts.remove(productBean.findById(i).getProductName());
+        }
+        System.out.println(transactionProducts);
+ }
 
     public List<ProductDetails> displayCart() {
         return transactionProducts;

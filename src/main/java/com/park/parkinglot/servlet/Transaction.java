@@ -25,15 +25,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Oli
  */
-@DeclareRoles({"AdminRole", "ClientRole","DirectorRole"})
+@DeclareRoles({"AdminRole", "ClientRole", "DirectorRole"})
 @WebServlet(name = "Transaction", urlPatterns = {"/Transaction"})
 public class Transaction extends HttpServlet {
-    
-@Inject
-TransactionBean transactionBean;
 
-@Inject
-ProductBean productBean;
+    @Inject
+    TransactionBean transactionBean;
+
+    @Inject
+    ProductBean productBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,24 +41,40 @@ ProductBean productBean;
         request.setAttribute("activePage", "Transaction");
 
         request.setAttribute("productList", transactionBean.displayCart());
+        request.setAttribute("totalValue", transactionBean.getTotalValue());
         request.getRequestDispatcher("/WEB-INF/pages/product/transaction.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try{
-        int productId = Integer.parseInt(request.getParameter("product_id"));
-        productBean.findById(productId); 
-        transactionBean.addProductById(productId);
+
+        if (request.getParameter("button_action").equals("delete")) {
+            String[] productsIdsAsString = request.getParameterValues("product_id_for_delete");
+            if (productsIdsAsString != null){
+                List<Integer> productsIds = new ArrayList<>();
+                for (String productIdAsString : productsIdsAsString) {
+                    productsIds.add(Integer.parseInt(productIdAsString));
+                }
+                transactionBean.removeProductByIdList(productsIds);
+            }
         }
-        catch(Exception e){
-        request.setAttribute("transactionMessage", "Incorrect product!");
+        if (request.getParameter("button_action").equals("addProduct")) {
+            try {
+                int productId = Integer.parseInt(request.getParameter("product_id"));
+                productBean.findById(productId);
+                transactionBean.addProductById(productId);
+            } catch (Exception e) {
+                request.setAttribute("transactionMessage", "Incorrect product!");
+            }
         }
-       
+        if (request.getParameter("button_action").equals("receipt")) {
+            transactionBean.createReceipt();
+            transactionBean.emptyCart();
+        }
         response.sendRedirect(request.getContextPath() + "/Transaction");
     }
+
     @Override
     public String getServletInfo() {
         return "Short description";

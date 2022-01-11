@@ -48,6 +48,7 @@ public class ProductBean {
         return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
     }
 
+    
     private List<ProductDetails> copyProductsToDetails(List<Product> products) {
 
         List<ProductDetails> detailsList = new ArrayList<>();
