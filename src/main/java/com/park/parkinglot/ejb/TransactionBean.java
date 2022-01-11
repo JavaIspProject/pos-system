@@ -50,18 +50,22 @@ public class TransactionBean {
     
     public void removeProductByIdList(Collection<Integer> ids) {
      LOG.info("deleteProductsByIds");
-        System.out.println(transactionProducts);
         List<String>delete=new ArrayList();
         for (Integer productId : ids) {
             delete.add(productBean.findById(productId).getProductName());
             totalValue-=productBean.findById(productId).getPrice();
         }
+        for(ProductDetails prd : transactionProducts){
+            System.out.println(prd.getId()+" "+prd.getProductName()+" "+prd.getPrice()+" "+prd.getCategoryName());
+        }
         System.out.println(delete);
         System.out.println("delete");
         for(String i : delete){
-            System.out.println(productBean.findById(i).getProductName());
-            transactionProducts.remove(productBean.findById(i).getProductName());
+            System.out.println(productBean.findByProductName(i).getProductName());
+            transactionProducts.remove(productBean.findByProductName(i));
         }
+        ProductDetails prdDtl=new ProductDetails(551,"masda",89999,"M");
+        transactionProducts.remove(prdDtl);
         System.out.println(transactionProducts);
  }
 

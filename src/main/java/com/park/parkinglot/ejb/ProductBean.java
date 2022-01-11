@@ -48,6 +48,18 @@ public class ProductBean {
         return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
     }
 
+    public ProductDetails findByProductName(String productName) {
+        TypedQuery<Product> typedQuery = em.createQuery("SELECT p FROM Product p where p.productName = :productName", Product.class).
+                setParameter("productName", productName);
+        List<Product> products = typedQuery.getResultList();
+        if (products.isEmpty()) {
+            return null;
+        }
+        Product product = products.get(0);
+        System.out.println("Numele produsului pe care l-o gasit in findByName");
+        System.out.println(product.getProductName());
+        return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
+    }
     
     private List<ProductDetails> copyProductsToDetails(List<Product> products) {
 
