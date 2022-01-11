@@ -1,7 +1,6 @@
 package com.park.parkinglot.ejb;
 
 import com.park.parkinglot.common.ProductDetails;
-import com.park.parkinglot.common.TransactionDetails;
 import com.park.parkinglot.entity.Transaction;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,8 +20,6 @@ public class TransactionBean {
 
     @Inject
     ProductBean productBean;
-    @Inject
-    ProductDetails productDetails;
 
     private static final Logger LOG = Logger.getLogger(TransactionBean.class.getName());
     private List<ProductDetails> transactionProducts = new ArrayList<>();
@@ -66,29 +63,33 @@ public class TransactionBean {
         }
         transactionProducts.removeAll(delete);
     }
-        public List<ProductDetails> findById(Integer receiptId) {
-        String productsFromReceipt=em.find(Transaction.class, receiptId).getListOfProducts();
+
+    public List<ProductDetails> findById(Integer receiptId) {
+        String productsFromReceipt = em.find(Transaction.class, receiptId).getListOfProducts();
         List<ProductDetails> receiptProducts = new ArrayList<>();
-        String[] separateProductNames= productsFromReceipt.split(" ");
-        for(String product : separateProductNames)
-        {
-        receiptProducts.add(productBean.findByName(product));
+        String[] separateProductNames = productsFromReceipt.split(" ");
+        for (String product : separateProductNames) {
+            receiptProducts.add(productBean.findByName(product));
         }
         return receiptProducts;
     }
-        public Integer refundValueByProductId(Integer receiptId, Integer productId) {
-        String productsFromReceipt=em.find(Transaction.class, receiptId).getListOfProducts();
-        String[] separateProductNames= productsFromReceipt.split(" ");
-        
-        for(String product : separateProductNames)
-        {
-        if(productBean.findByName(product).getId().equals(productId))
-            return 0-productBean.findByName(product).getPrice();
+
+    public Double getTotalById(Integer receiptId) {
+        return em.find(Transaction.class, receiptId).getTotal();
+    }
+
+    public Integer refundValueByProductId(Integer receiptId, Integer productId) {
+        String productsFromReceipt = em.find(Transaction.class, receiptId).getListOfProducts();
+        String[] separateProductNames = productsFromReceipt.split(" ");
+
+        for (String product : separateProductNames) {
+            if (productBean.findByName(product).getId().equals(productId)) {
+                return 0 - productBean.findByName(product).getPrice();
+            }
         }
         return 0;
     }
-       
-       
+
     public List<ProductDetails> displayCart() {
         return transactionProducts;
     }

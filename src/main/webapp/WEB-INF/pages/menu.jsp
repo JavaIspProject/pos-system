@@ -40,7 +40,7 @@
                 </c:if> 
                 <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                     <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'Receipt' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Receipt">Receipt</a>
+                        <a class="nav-link ${activePage eq 'Receipt' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Receipt">Return</a>
                     </li>
                 </c:if> 
             </ul>

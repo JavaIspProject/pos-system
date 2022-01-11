@@ -4,7 +4,6 @@
  */
 package com.park.parkinglot.servlet;
 
-import com.park.parkinglot.ejb.ProductBean;
 import com.park.parkinglot.ejb.TransactionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +38,7 @@ public class Receipt extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Receipt</title>");            
+            out.println("<title>Servlet Receipt</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Receipt at " + request.getContextPath() + "</h1>");
@@ -57,16 +56,16 @@ public class Receipt extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-@Inject
-    TransactionBean transactionBean;
+    @Inject
+    TransactionBean returnBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "Receipt");
-        
-        request.setAttribute("productList", transactionBean.displayCart());
-        request.setAttribute("totalValue", transactionBean.getTotalValue());
+
+        request.setAttribute("productList", returnBean.displayCart());
+        request.setAttribute("totalValue", returnBean.getTotalValue());
         request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
     }
 
@@ -83,6 +82,17 @@ public class Receipt extends HttpServlet {
             throws ServletException, IOException {
         String[] receiptIdAsString = request.getParameterValues("receipt_id");
         processRequest(request, response);
+        if (request.getParameter("button_action").equals("showReceipt")) {
+            try {
+                Integer receiptId = Integer.parseInt(request.getParameter("receipt_id"));
+                request.setAttribute("productList", returnBean.findById(receiptId));
+                request.setAttribute("totalValue", returnBean.getTotalById(receiptId));
+            } catch (Exception e) {
+                 request.setAttribute("returnMessage", "Incorrect product!");
+                 //request.getRequestDispatcher("/WEB-INF/pages/product/receipt.jsp").forward(request, response);
+            }
+        }
+        response.sendRedirect(request.getContextPath() + "/Receipt");
     }
 
     /**
