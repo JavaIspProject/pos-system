@@ -15,7 +15,7 @@
                 <label for="username ">Username</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                    Username is required.
+                    Username necesar.
                 </div>
             </div>
         </div>
@@ -24,27 +24,27 @@
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                    Email is required.
+                    Email necesar.
                 </div>
             </div>
         </div>
         <div class="row">
             <div class=" col-md-6 mb-3">
-                <label for="password "> Password</label>
+                <label for="password "> Parola</label>
                 <input type="password" class=" form-control" id="password" name="password" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                    Password is required.
+                    Parola este necesara.
                 </div>
             </div>
         </div>
         <div class="row">
             <div class=" col-md-6 mb-3">
-                <label for="position ">Position</label>
+                <label for="position ">Pozitie</label>
                 <select class="custom-select d-block w-100" id="position" name="position" required>
-                    <option value=" ">Choose...</option>
+                    <option value=" ">Alege...</option>
                     <option value="ADMINISTRATOR">Administrator</option>
                     <option value="DIRECTOR">Director</option>
-                    <option value="NOT_CASHIER">Cashier</option>
+                    <option value="NOT_CASHIER">Casier</option>
                 </select>
                 <div class="invalid-feedback">
                     Please select a position.
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary " required>Save</button>
+            <button type="submit" class="btn btn-primary " required>Salveaza</button>
         </div>
     </form>
     <script>

@@ -7,12 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:pageTemplate pageTitle="Categories">
-    <h1>Categories</h1>
+<t:pageTemplate pageTitle="Categorii">
+    <h1>Categorii</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Categories">
         <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-            <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCategory" role="button">Add Category</a>
-            <button class="btn btn-danger" type="submit">Delete Products</button>
+            <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCategory" role="button">Adauga Categorie</a>
+            <button class="btn btn-danger" type="submit">Sterge Categorie</button>
         </c:if>
         <c:forEach var="category" items="${categories}" varStatus="status">
             <div class="row">

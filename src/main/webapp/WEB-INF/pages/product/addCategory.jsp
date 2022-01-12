@@ -9,17 +9,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:pageTemplate pageTitle="Add Category">
-    <h1>Add Category</h1>
+    <h1>Adauga o Categorie</h1>
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddCategory">
         <div class="row">
             <div class="col-md-6 mb-3">
                 <div class="form-group">
-                    <label for="category_name">Category Name</label>
+                    <label for="category_name">Numele Categoriei</label>
                     <input type="text" class="form-control" id="category_name" aria-describedby="categoryNameHelp" placeholder="Category Name" name="category_name" value=""  required>
                 </div>
             </div>
             <input type="hidden" name="category_id" value="${category.id}" />
-            <button type="submit" class="btn btn-primary  btn-lg btn-block" >Save</button>
+            <button type="submit" class="btn btn-primary  btn-lg btn-block" >Salveaza</button>
     </form>
     <script>
         (function () {

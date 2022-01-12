@@ -7,14 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:pageTemplate pageTitle="Products">
-    <h1>Products</h1>
+<t:pageTemplate pageTitle="Produse">
+    <h1>Produse</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Products">
         <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCar" role="button">Add Product</a> 
+        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCar" role="button">Adauga Produs</a> 
         </c:if>
         <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-        <button class="btn btn-danger" type="submit">Delete Products</button>
+        <button class="btn btn-danger" type="submit">Sterge Produs(e)</button>
         </c:if>
         <c:forEach var="product" items="${products}" varStatus="status">
             <div class="row mb-1">
@@ -30,7 +30,7 @@
                     ${product.productName}
                 </div>
                 <div class="col-md-2">
-                    price: ${product.price} USD
+                    price: ${product.price} RON
                 </div>
                 <div class="col-md-1">
                     ${product.categoryName} 
@@ -40,10 +40,10 @@
                 </div>
                 <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Products/AddPhoto?id=${product.id}" role="button">Add Photo</a>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/Products/AddPhoto?id=${product.id}" role="button">Adauga Poza</a>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProduct?id=${product.id}" role="button">Edit Product</a>
+                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProduct?id=${product.id}" role="button">Editeaza Produsul</a>
                 </div>
                 </c:if>
             </div>    

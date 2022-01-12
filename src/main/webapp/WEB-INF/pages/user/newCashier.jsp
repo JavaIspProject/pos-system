@@ -6,10 +6,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:pageTemplate pageTitle="newCashier">
-    <h1>On hold cashiers</h1>
+<t:pageTemplate pageTitle="Accepta Casier">
+    <h1>Casieri in Asteptare</h1>
     <form method="POST" action="${pageContext.request.contextPath}/newCashier">
-            <button class="btn btn-secondary" type="submit">Pass new cashiers</button>
+            <button class="btn btn-secondary" type="submit">Aproba casieri noi</button>
         <c:forEach var="user" items="${users}" varStatus="status">
             <c:if test="${user.position.equals('NOT_CASHIER')}">
                 <div class="row">
