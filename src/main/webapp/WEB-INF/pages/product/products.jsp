@@ -38,11 +38,19 @@
         </div>
         <c:forEach var="product" items="${products}" varStatus="status">
             <div class="row mb-1">
-                <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-                    <div class="col-md-1">
-                        <input type="checkbox" name="product_ids" value="${product.id}"/>
-                    </div>
-                </c:if>
+                <c:choose>
+                    <c:when test="${pageContext.request.isUserInRole('AdminRole')}">
+                        <div class="col-md-1">
+                            <input type="checkbox" name="product_ids" value="${product.id}"/>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="col-md-1">
+                            <h5></h5>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
                 <div class="col-md-1">
                     ${product.id}
                 </div>
