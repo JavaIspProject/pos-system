@@ -15,7 +15,7 @@
             <div class="col-md-6 mb-3">
                 <div class="form-group">
                     <label for="category_name">Numele Categoriei</label>
-                    <input type="text" class="form-control" id="category_name" aria-describedby="categoryNameHelp" placeholder="Category Name" name="category_name" value=""  required>
+                    <input type="text" class="form-control" id="category_name" aria-describedby="categoryNameHelp" placeholder="Nume categorie" name="category_name" value=""  required>
                 </div>
             </div>
             <input type="hidden" name="category_id" value="${category.id}" />

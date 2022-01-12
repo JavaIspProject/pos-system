@@ -14,6 +14,14 @@
             <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddCategory" role="button">Adauga Categorie</a>
             <button class="btn btn-danger" type="submit">Sterge Categorie</button>
         </c:if>
+        <div class="row">
+            <div class="col-md">
+                <h3></h3>
+            </div>
+            <div class="col-md-4">
+                <h5>Nume Categorie</h5>
+            </div>
+        </div>
         <c:forEach var="category" items="${categories}" varStatus="status">
             <div class="row">
                 <div class="col-md">

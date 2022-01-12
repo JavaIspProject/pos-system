@@ -35,7 +35,7 @@ public class Transaction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "Transaction");
+        request.setAttribute("activePage", "Tranzactie");
 
         request.setAttribute("productList", transactionBean.displayCart());
         request.setAttribute("totalValue", transactionBean.getTotalValue());
@@ -70,8 +70,8 @@ public class Transaction extends HttpServlet {
             }
         }
         if (request.getParameter("button_action").equals("receipt")) {
-                transactionBean.createReceipt();
-                transactionBean.emptyCart();
+            transactionBean.createReceipt();
+            transactionBean.emptyCart();
         }
         response.sendRedirect(request.getContextPath() + "/Transaction");
     }

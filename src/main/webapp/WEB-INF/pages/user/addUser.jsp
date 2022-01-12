@@ -13,7 +13,7 @@
         <div class="row">
             <div class=" col-md-6 mb-3">
                 <label for="username ">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="" value="" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Nume" value="" required>
                 <div class="invalid-feedback">
                     Username necesar.
                 </div>
@@ -22,7 +22,7 @@
         <div class=" row">
             <div class=" col-md-6 mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="" value="" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="" required>
                 <div class="invalid-feedback">
                     Email necesar.
                 </div>
@@ -31,7 +31,7 @@
         <div class="row">
             <div class=" col-md-6 mb-3">
                 <label for="password "> Parola</label>
-                <input type="password" class=" form-control" id="password" name="password" placeholder="" value="" required>
+                <input type="password" class=" form-control" id="password" name="password" placeholder="Parola" value="" required>
                 <div class="invalid-feedback">
                     Parola este necesara.
                 </div>
@@ -47,7 +47,7 @@
                     <option value="NOT_CASHIER">Casier</option>
                 </select>
                 <div class="invalid-feedback">
-                    Please select a position.
+                    Va rugam sa selectati o pozitie!
                 </div>
             </div>
         </div>

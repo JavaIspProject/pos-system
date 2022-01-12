@@ -69,7 +69,7 @@ public class Users extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "Users");
+        request.setAttribute("activePage", "Utilizatori");
 
         List<UserDetails> users = userBean.getAllUsers();
         request.setAttribute("users", users);
@@ -88,14 +88,6 @@ public class Users extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] userIdsAsString = request.getParameterValues("user_ids");
-        if (userIdsAsString != null) {
-            List<Integer> userIds = new ArrayList<>();
-            for (String carIdAsString : userIdsAsString) {
-                userIds.add(Integer.parseInt(carIdAsString));
-            }
-            //invoiceBean.getUserIds().addAll(userIds);
-        }
         response.sendRedirect(request.getContextPath() + "/Users");
     }
 

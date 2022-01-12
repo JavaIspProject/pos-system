@@ -16,31 +16,31 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item ">
-                    <a class="nav-link ${activePage eq 'Products' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Products">Products</a>
+                    <a class="nav-link ${activePage eq 'Produse' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Products">Catalog Produse</a>
                 </li>
                 <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                     <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'Categories' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Categories">Categories</a>
+                        <a class="nav-link ${activePage eq 'Categorii' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Categories">Categorii</a>
                     </li>
                 </c:if>
                 <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                     <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'Users' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Users</a>
+                        <a class="nav-link ${activePage eq 'Utilizatori' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Users">Utilizatori</a>
                     </li>
                 </c:if>   
                 <c:if test="${pageContext.request.isUserInRole('DirectorRole')}">
                     <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'newCashier' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Cashier Checking</a>
+                        <a class="nav-link ${activePage eq 'Verificare casieri' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/newCashier">Verificare casieri</a>
                     </li>
                 </c:if> 
                 <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                     <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'Transaction' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Transaction">Transaction</a>
+                        <a class="nav-link ${activePage eq 'Tranzactie' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Transaction">Tranzactie</a>
                     </li>
                 </c:if> 
                 <c:if test="${pageContext.request.isUserInRole('ClientRole')}">
                     <li class="nav-item ">
-                        <a class="nav-link ${activePage eq 'Receipt' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Receipt">Return</a>
+                        <a class="nav-link ${activePage eq 'Retur' ? 'active' : ' ' }" href="${pageContext.request.contextPath}/Receipt">Retur</a>
                     </li>
                 </c:if> 
             </ul>

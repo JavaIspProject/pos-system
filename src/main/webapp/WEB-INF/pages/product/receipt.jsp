@@ -16,14 +16,25 @@
     <form method="POST" action="${pageContext.request.contextPath}/Receipt">
         <div class="form-group">
             <label for="inputProductName">Codul Bonului</label>
-            <input type="number" autofocus class="form-control" id="receipt_id" aria-describedby="productCodeHelp" placeholder="Receipt Code" name="receipt_id" value="" required>
+            <input type="number" autofocus class="form-control" id="receipt_id" aria-describedby="productCodeHelp" placeholder="Cod bon" name="receipt_id" value="" required>
             <button type="submit" class="btn btn-primary" name="button_action" value="showReceipt">Afiseaza Detaliile Bonului</button>
             <br/>
             <label for="inputProductName">Codul Produsului</label>
-            <input type="number" class="form-control" id="receipt_id" aria-describedby="productCodeHelp" placeholder="Product Code" name="product_id" value="">
+            <input type="number" class="form-control" id="receipt_id" aria-describedby="productCodeHelp" placeholder="Codul de bare al produsului" name="product_id" value="">
             <button type="submit" class="btn btn-primary" name="button_action" value="returnProduct">Returneaza Produs</button>
-       </div>
+        </div>
     </form>
+    <div class="row mb-1">
+        <div class="col-md-2">
+            <h5>Cod bare</h5>
+        </div>
+        <div class="col-md-2">
+            <h5>Nume</h5>
+        </div>
+        <div class="col-md-2">
+            <h5>Pret</h5>
+        </div>
+    </div> 
     <c:forEach var="product" items="${productList}" varStatus="status">
         <div class="row mb-1">
             <div class="col-md-2">
@@ -33,7 +44,7 @@
                 ${product.productName}
             </div>
             <div class="col-md-2">
-                price: ${product.price} RON
+                ${product.price} RON
             </div>
         </div>    
     </c:forEach>

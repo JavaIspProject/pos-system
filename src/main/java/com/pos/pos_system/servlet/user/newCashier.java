@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author boo_b
  */
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"DirectorRole"}))
 @WebServlet(name = "newCashier", urlPatterns = {"/newCashier"})
 public class newCashier extends HttpServlet {
 
@@ -65,7 +68,7 @@ public class newCashier extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "newCashier");
+        request.setAttribute("activePage", "Verificare casieri");
 
         List<UserDetails> users = userBean.getAllUsers();
         request.setAttribute("users", users);
@@ -90,7 +93,7 @@ public class newCashier extends HttpServlet {
             for (String carIdAsString : userIdsAsString) {
                 userIds.add(Integer.parseInt(carIdAsString));
             }
-            for(int userId:userIds){
+            for (int userId : userIds) {
                 userBean.addNewCashier(userId);
             }
         }
