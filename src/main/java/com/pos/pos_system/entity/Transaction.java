@@ -23,7 +23,7 @@ public class Transaction implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     private Double total;
     private String listOfProducts;
 
@@ -50,8 +50,7 @@ public class Transaction implements Serializable {
     public void setListOfProducts(String listOfProducts) {
         this.listOfProducts = listOfProducts;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -76,5 +75,5 @@ public class Transaction implements Serializable {
     public String toString() {
         return "com.park.parkinglot.entity.Transaction[ id=" + id + " ]";
     }
-    
+
 }

@@ -34,7 +34,7 @@ public class AddProduct extends HttpServlet {
 
     @Inject
     ProductBean productBean;
-    
+
     @Inject
     private CategoryBean categoryBean;
 

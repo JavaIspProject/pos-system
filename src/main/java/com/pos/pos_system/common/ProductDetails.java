@@ -36,7 +36,7 @@ public class ProductDetails implements java.io.Serializable {
     public Integer getPrice() {
         return price;
     }
-    
+
     public String getCategoryName() {
         return categoryName;
     }

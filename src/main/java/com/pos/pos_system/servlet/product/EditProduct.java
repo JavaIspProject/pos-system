@@ -38,6 +38,7 @@ public class EditProduct extends HttpServlet {
 
     @Inject
     private CategoryBean categoryBean;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -78,7 +79,7 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         List<CategoryDetails> categories = categoryBean.getAllCategories();
         request.setAttribute("categories", categories);
-        
+
         int productId = Integer.parseInt(request.getParameter("id"));
         ProductDetails product = productBean.findById(productId);
         request.setAttribute("product", product);

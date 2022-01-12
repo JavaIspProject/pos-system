@@ -33,9 +33,10 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String position;
+
     @JsonbTransient
     //@OneToMany(mappedBy = "user")
-   // private Collection<Product> cars;
+    // private Collection<Product> cars;
 
     public String getUsername() {
         return username;
@@ -77,7 +78,6 @@ public class User implements Serializable {
 //    public void setCars(Collection<Product> cars) {
 //        this.cars = cars;
 //    }
-
     public Integer getId() {
         return id;
     }
