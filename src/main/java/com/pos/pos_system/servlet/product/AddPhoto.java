@@ -36,7 +36,7 @@ public class AddPhoto extends HttpServlet {
      */
     @Inject
     ProductBean productBean;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -69,7 +69,7 @@ public class AddPhoto extends HttpServlet {
         Integer carId = Integer.parseInt(request.getParameter("id"));
         ProductDetails product = productBean.findById(carId);
         request.setAttribute("product", product);
-        
+
         request.getRequestDispatcher("/WEB-INF/pages/product/addPhoto.jsp").forward(request, response);
     }
 
@@ -86,14 +86,14 @@ public class AddPhoto extends HttpServlet {
             throws ServletException, IOException {
         String productIdAsString = request.getParameter("product_id");
         Integer productId = Integer.parseInt(productIdAsString);
-        
+
         Part filePart = request.getPart("file");
         String fileName = filePart.getSubmittedFileName();
         String fileType = filePart.getContentType();
         long fileSize = filePart.getSize();
         byte[] fileContent = new byte[(int) fileSize];
         filePart.getInputStream().read(fileContent);
-        
+
         productBean.addPhotoToProduct(productId, fileName, fileType, fileContent);
         response.sendRedirect(request.getContextPath() + "/Products");
     }

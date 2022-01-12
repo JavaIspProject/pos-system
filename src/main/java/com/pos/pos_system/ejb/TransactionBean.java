@@ -64,10 +64,10 @@ public class TransactionBean {
         transactionProducts.removeAll(delete);
     }
 
-    public void returnProductValue(Double value){
-        totalValue=value;
+    public void returnProductValue(Double value) {
+        totalValue = value;
     }
-    
+
     public List<ProductDetails> findById(Integer receiptId) {
         String productsFromReceipt = em.find(Transaction.class, receiptId).getListOfProducts();
         List<ProductDetails> receiptProducts = new ArrayList<>();

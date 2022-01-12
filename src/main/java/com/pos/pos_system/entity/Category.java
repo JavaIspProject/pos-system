@@ -25,8 +25,8 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String categoryName;
-    
-        @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Category_KEY")
 
     private Category category;
@@ -54,7 +54,6 @@ public class Category implements Serializable {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
-    
 
     @Override
     public int hashCode() {
@@ -80,5 +79,5 @@ public class Category implements Serializable {
     public String toString() {
         return "com.park.parkinglot.entity.Category[ id=" + id + " ]";
     }
-    
+
 }

@@ -30,14 +30,14 @@ public class CategoryBean {
 
     @PersistenceContext
     private EntityManager em;
-    
-    
+
     public void createCategory(String categoryName) {
         Category category = new Category();
         category.setCategoryName(categoryName);
         LOG.info("criet");
         em.persist(category);
     }
+
     public List<CategoryDetails> getAllCategories() {
         LOG.info("getAllCategories");
         try {
@@ -48,8 +48,8 @@ public class CategoryBean {
             throw new EJBException(ex);
         }
     }
-    
-      private List<CategoryDetails> copyCategoryToDetails(List<Category> categories) {
+
+    private List<CategoryDetails> copyCategoryToDetails(List<Category> categories) {
 
         List<CategoryDetails> detailsList = new ArrayList<>();
         for (Category category : categories) {
@@ -59,16 +59,16 @@ public class CategoryBean {
         }
         return detailsList;
     }
-      
-          public Collection<String> findCategoryNames(Collection<Integer> categoryIds) {
+
+    public Collection<String> findCategoryNames(Collection<Integer> categoryIds) {
         LOG.info("findCategoryNames");
         List<String> usernames = (List<String>) em.createQuery("SELECT c.categoryName FROM Category c WHERE c.id In ?1")
                 .setParameter(1, categoryIds)
                 .getResultList();
         return usernames;
     }
-          
-              public ProductDetails findProductByCategoryId(Integer categoryId) {
+
+    public ProductDetails findProductByCategoryId(Integer categoryId) {
         TypedQuery<Product> typedQuery = em.createQuery("SELECT p FROM Product p where p.product.id = :id", Product.class).
                 setParameter("id", categoryId);
         List<Product> products = typedQuery.getResultList();
@@ -78,12 +78,13 @@ public class CategoryBean {
         Product product = products.get(0);
         return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
     }
-                  public void deleteCategoriesByIds(Collection<Integer> ids) {
+
+    public void deleteCategoriesByIds(Collection<Integer> ids) {
         LOG.info("deleteCategoriesByIds");
         for (Integer id : ids) {
             Category category = em.find(Category.class, id);
             em.remove(category);
         }
     }
-    
+
 }

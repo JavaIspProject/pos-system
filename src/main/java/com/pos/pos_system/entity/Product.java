@@ -29,13 +29,13 @@ public class Product implements Serializable {
     private Integer id;
 
     private String productName;
-    
+
     private Integer price;
-    
+
     private Integer categoryId;
-    
+
     private String categoryName;
-    
+
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Photo photo;
 
@@ -58,11 +58,9 @@ public class Product implements Serializable {
 //    public User getUser() {
 //        return user;
 //    }
-
 //    public void setUser(User user) {
 //        this.user = user;
 //    }
-
     public Photo getPhoto() {
         return photo;
     }
@@ -78,8 +76,8 @@ public class Product implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
-        public Integer getCategoryId() {
+
+    public Integer getCategoryId() {
         return categoryId;
     }
 

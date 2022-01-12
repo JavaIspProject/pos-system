@@ -10,6 +10,7 @@ package com.pos.pos_system.common;
  * @author Oli
  */
 public class TransactionDetails {
+
     private Long id;
     private Double total;
     private String listOfProducts;
@@ -31,6 +32,5 @@ public class TransactionDetails {
         this.total = total;
         this.listOfProducts = listOfProducts;
     }
-    
-    
+
 }

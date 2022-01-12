@@ -42,7 +42,6 @@ public class ProductBean {
         }
     }
 
-    
     public ProductDetails findById(Integer productId) {
         Product product = em.find(Product.class, productId);
         return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
@@ -58,7 +57,7 @@ public class ProductBean {
         Product product = products.get(0);
         return new ProductDetails(product.getId(), product.getProductName(), product.getPrice(), product.getCategoryName());
     }
-    
+
     private List<ProductDetails> copyProductsToDetails(List<Product> products) {
 
         List<ProductDetails> detailsList = new ArrayList<>();
@@ -82,7 +81,6 @@ public class ProductBean {
         //User user = em.find(User.class, userId);
         //user.getProducts().add(product);
         //product.setUser(user);
-
         em.persist(product);
     }
     // Add business logic below. (Right-click in editor and choose
@@ -95,10 +93,8 @@ public class ProductBean {
         product.setPrice(price);
         product.setCategoryName(categoryName);
 
-        
         //User oldUser = product.getUser();
         //oldUser.getProducts().remove(product);
-
         //User user = em.find(User.class, userId);
         //user.getProducts().add(product);
         //product.setUser(user);
