@@ -49,7 +49,6 @@ public class TransactionBean {
 
     public void removeProductByIdList(Collection<Integer> ids) {
         LOG.info("deleteProductsByIds");
-        System.out.println(transactionProducts);
         List<ProductDetails> delete = new ArrayList();
         for (Integer productId : ids) {
             int del = ids.size();
